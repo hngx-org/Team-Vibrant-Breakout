@@ -26,16 +26,6 @@ class SplashPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                const Hero(
-                  tag: titleAnimationTag,
-                  child: Text(
-                    'Retro Breakout',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
                 SizedBox(height: 20),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
