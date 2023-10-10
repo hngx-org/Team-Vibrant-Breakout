@@ -1,0 +1,1 @@
+const titleAnimationTag = 'TITLE-ANIMATION';
