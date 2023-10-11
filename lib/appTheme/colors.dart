@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
-final bgColorGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomLeft,
-    colors: [
-      Colors.purple.shade900,
-      Colors.blue.shade900,
-    ]);
+final bgColor = Color.fromARGB(223, 5, 11, 77);
 
-const textColor = Colors.brown;
-final shadowColor = Colors.brown.shade200;
-const buttonColor = Color(0XFFBC4A3C);
-const borderSideColor = Color.fromARGB(255, 255, 128, 69);
+const textColor = Colors.white24;
+const colorWhite = Colors.white;
+const colorBlack = Colors.black87;
+final shadowColor = const Color.fromARGB(255, 177, 164, 188);
+const buttonColor = Color(0xFF84FFFF);
+const borderSideColor = Color.fromARGB(255, 6, 86, 236);
+const ballColor = Color(0xFFFFFF00);

@@ -4,10 +4,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
-import 'package:team_vibrant_breakout/screens/levels_page.dart';
+import 'package:team_vibrant_breakout/screens/gameScreen.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+class StarterPage extends StatelessWidget {
+  const StarterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MainPage extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(gradient: bgColorGradient),
+          decoration: BoxDecoration(color: bgColor),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -27,8 +27,9 @@ class MainPage extends StatelessWidget {
                   Text(
                     'HighScore: 0000',
                     style: TextStyle(
-                      fontSize: 16,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: buttonColor),
                   ),
                 ],
               ),
@@ -38,20 +39,21 @@ class MainPage extends StatelessWidget {
                 child: Text(
                   'Retro Breakout',
                   style: TextStyle(
+                    color: colorWhite,
                     fontSize: 40,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
               const Spacer(),
-              MainPageButton(
+              GameScreenButton(
                 onTap: () {
-                  Get.to(const LevelPage());
+                  Get.to(const GameScreen());
                 },
                 label: 'Play',
               ),
               const SizedBox(height: 10),
-              MainPageButton(
+              GameScreenButton(
                 onTap: () {
                   Get.dialog(
                     SettingsDialog(),
@@ -60,7 +62,7 @@ class MainPage extends StatelessWidget {
                 label: 'Settings',
               ),
               const SizedBox(height: 10),
-              MainPageButton(
+              GameScreenButton(
                 onTap: () {
                   Get.dialog(
                     CustomDialogWidget(),
@@ -208,8 +210,8 @@ class CustomDialogWidget extends StatelessWidget {
   }
 }
 
-class MainPageButton extends StatelessWidget {
-  const MainPageButton({
+class GameScreenButton extends StatelessWidget {
+  const GameScreenButton({
     super.key,
     required this.label,
     required this.onTap,
