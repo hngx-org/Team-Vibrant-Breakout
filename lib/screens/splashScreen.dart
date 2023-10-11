@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
+import 'package:team_vibrant_breakout/screens/gameScreen.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 // class SplashPage extends StatelessWidget {
@@ -54,37 +55,33 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.delayed(
-        const Duration(seconds: 3),
-        () => Get.to(const StarterPage()),
-      ),
+      future: Future.delayed(Duration(seconds: 4), () => Get.to(StarterPage())),
       builder: (context, snapshot) {
         return Scaffold(
           body: Container(
             decoration: BoxDecoration(
-              color: bgColor,
-            ),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+                image: DecorationImage(
+                    image: AssetImage("images/image1.jpeg"), fit: BoxFit.fill)),
+            width: double.maxFinite,
+            height: double.maxFinite,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
                   'BREAK OUT GAME',
-                  style: TextStyle(fontSize: 40, color: textColor),
+                  style: TextStyle(fontSize: 40, color: shadowColor),
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
-                // SizedBox(
-                //   width: MediaQuery.of(context).size.width * 0.3,
-                //   child: LinearProgressIndicator(
-                //     minHeight: 30,
-                //     color: colorBlack,
-                //   ),
-                // ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: LinearProgressIndicator(
+                    minHeight: 30,
+                    color: colorBlack,
+                  ),
+                ),
               ],
             ),
           ),

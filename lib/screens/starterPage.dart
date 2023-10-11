@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
+import 'package:team_vibrant_breakout/screens/gameLevels.dart';
 import 'package:team_vibrant_breakout/screens/gameScreen.dart';
 
 class StarterPage extends StatelessWidget {
@@ -14,9 +15,11 @@ class StarterPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(color: bgColor),
+          width: double.maxFinite,
+          height: double.maxFinite,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("images/image2.jpeg"), fit: BoxFit.fill)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -28,7 +31,7 @@ class StarterPage extends StatelessWidget {
                     'HighScore: 0000',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 25,
                         color: buttonColor),
                   ),
                 ],
@@ -39,7 +42,7 @@ class StarterPage extends StatelessWidget {
                 child: Text(
                   'Retro Breakout',
                   style: TextStyle(
-                    color: colorWhite,
+                    color: buttonColor,
                     fontSize: 40,
                     fontWeight: FontWeight.w500,
                   ),
@@ -51,6 +54,17 @@ class StarterPage extends StatelessWidget {
                   Get.to(const GameScreen());
                 },
                 label: 'Play',
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GameScreenButton(
+                onTap: () {
+                  Get.dialog(
+                    GameLevels(),
+                  );
+                },
+                label: 'Levels',
               ),
               const SizedBox(height: 10),
               GameScreenButton(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/screens/gameScreen.dart';
+import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const GameScreen(),
+      home: const GameToolBar(),
     );
   }
 }
