@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:team_vibrant_breakout/screens/splash_page.dart';
+import 'package:flutter/services.dart';
+import 'package:team_vibrant_breakout/appTheme/colors.dart';
+import 'package:team_vibrant_breakout/screens/gameScreen.dart';
+import 'package:team_vibrant_breakout/screens/starterPage.dart';
+import 'package:team_vibrant_breakout/screens/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +18,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+                statusBarColor: bgColor,
+                statusBarIconBrightness: Brightness.light)),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashPage(),
+      debugShowCheckedModeBanner: false,
+      home: const GameScreen(),
     );
   }
 }
