@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:rive/rive.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -48,7 +49,10 @@ class StarterPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
+              //const Spacer()
+              const SizedBox(
+                height: 80,
+              ),
               GameScreenButton(
                 onTap: () {
                   Get.to(const GameScreen());
@@ -67,15 +71,15 @@ class StarterPage extends StatelessWidget {
                 label: 'Levels',
               ),
               const SizedBox(height: 10),
-              GameScreenButton(
-                onTap: () {
-                  Get.dialog(
-                    SettingsDialog(),
-                  );
-                },
-                label: 'Settings',
-              ),
-              const SizedBox(height: 10),
+              // GameScreenButton(
+              //   onTap: () {
+              //     Get.dialog(
+              //       SettingsDialog(),
+              //     );
+              //   },
+              //   label: 'Settings',
+              // ),
+              //const SizedBox(height: 10),
               GameScreenButton(
                 onTap: () {
                   Get.dialog(

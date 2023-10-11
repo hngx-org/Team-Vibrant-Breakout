@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (context, snapshot) {
         return Scaffold(
           body: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("images/image1.jpeg"), fit: BoxFit.fill)),
             width: double.maxFinite,
@@ -68,9 +68,12 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Text(
+                const Text(
                   'BREAK OUT GAME',
-                  style: TextStyle(fontSize: 40, color: shadowColor),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 40,
+                      color: buttonColor),
                 ),
                 SizedBox(
                   height: 20,
@@ -79,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: LinearProgressIndicator(
                     minHeight: 30,
-                    color: colorBlack,
+                    color: bgColor,
                   ),
                 ),
               ],

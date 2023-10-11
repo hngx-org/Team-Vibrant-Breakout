@@ -26,7 +26,7 @@ class _GameToolBarState extends State<GameToolBar> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         IconButton(
-            onPressed: () => Get.to(SettingPage()),
+            onPressed: () => Get.to(SettingsDialog()),
             icon: Icon(
               Icons.settings_applications,
               color: shadowColor,
