@@ -27,6 +27,7 @@ dependencies:
   
   cupertino_icons: ^1.0.2
   lottie: ^2.6.0
+  flame_audio: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,9 @@ flutter:
     - assets/images/tile2.png
     - assets/images/tile3.png
     - assets/images/tile4.png
+    - assets/audio/gameover.mp3
+    - assets/audio/hit.wav
+    - assets/audio/shot.wav
 
   
   # To add custom fonts to your application, add a fonts section here,

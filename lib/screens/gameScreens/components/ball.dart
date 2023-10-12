@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
@@ -51,10 +52,14 @@ class Ball extends SpriteComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    // Rect otherRect = Rect.fromPoints(
-    //   Offset(other.x, other.y),
-    //   Offset(other.x + other.width, other.y + other.height),
-    // );
+    Rect otherRect = Rect.fromPoints(
+      Offset(other.x, other.y),
+      Offset(other.x + other.width, other.y + other.height),
+    );
+    Rect thisRect = Rect.fromPoints(
+      Offset(x, y),
+      Offset(x + width, y + height),
+    );
     // final rectCenter = otherRect.topCenter.toVector2();
     // final ballPosition = position;
     // final vector = ballPosition - rectCenter;
@@ -70,26 +75,56 @@ class Ball extends SpriteComponent
     // final newAngle = angle + offset;
 
     if (other is Player) {
-      // velocity.y *= -1;
-      // velocity = vector2FromAngle(newAngle);
-      // Calculate the angle of the ball's movement
-      final angle = atan2(velocity.y, velocity.x);
-      final reflectedAngle = pi - angle;
-      velocity = vector2FromAngle(reflectedAngle);
-      velocity.y *= -1;
-    } else if (other is Brick) {
-      // velocity.y *= -1;
-      final angle = atan2(velocity.y, velocity.x);
-      final reflectedAngle = pi - angle;
-      velocity = vector2FromAngle(reflectedAngle);
-      velocity.y *= -1;
-    } else if (other is Boundary) {
-      if (other.isBottom) {}
-      if (position.x < 0 || position.x > game.size.x - (width)) {
-        velocity.x *= -1;
+      FlameAudio.play('audio/hit.wav');
+      if (otherRect.overlaps(thisRect)) {
+        Rect intersection = thisRect.intersect(otherRect);
+        if (intersection.height < intersection.width &&
+            position.y < other.position.y) {
+          position =
+              Offset(position.x, position.y - intersection.height).toVector2();
+          double paddlePct =
+              (position.x + width / 2 - other.position.x) / other.width;
+          double maxAngle = pi * .8;
+          velocity = Offset.fromDirection(-maxAngle + maxAngle * paddlePct)
+              .toVector2();
+        } else if (position.x < other.position.x) {
+          position = Offset(other.position.x - width, position.y).toVector2();
+          velocity = Offset.fromDirection(-velocity.x.abs(), velocity.y.abs())
+              .toVector2();
+        } else if (position.x > other.position.x) {
+          position = Offset(other.position.x, position.y).toVector2();
+          velocity = Offset.fromDirection(-velocity.x.abs(), velocity.y.abs())
+              .toVector2();
+        } else {
+          position = Offset(position.x, otherRect.bottom).toVector2();
+          velocity = Offset(0, velocity.y.abs()).toVector2();
+        }
       }
-      if (position.y < 0 || position.y > game.size.y - (height)) {
-        velocity.y *= -1;
+    } else if (other is Brick) {
+      FlameAudio.play('audio/shot.wav');
+      if (otherRect.overlaps(thisRect)) {
+        Rect intersection = thisRect.intersect(otherRect);
+        if (intersection.height > intersection.width) {
+          position = Offset(
+                  position.x - intersection.width * velocity.x.sign, position.y)
+              .toVector2();
+          velocity = Offset(-velocity.x, velocity.y).toVector2();
+        } else {
+          position = Offset(
+                  position.x, position.y - intersection.width * velocity.y.sign)
+              .toVector2();
+          velocity = Offset(velocity.x, -velocity.y).toVector2();
+        }
+      }
+    } else if (other is Boundary) {
+      FlameAudio.play('audio/hit.wav');
+      if (!other.isBottom) {
+        if (position.x < 0 || position.x > game.size.x - (width)) {
+          velocity.x *= -1;
+        }
+        if (position.y < 0 || position.y > game.size.y - (height)) {
+          velocity.y *= -1;
+        }
       }
     }
 
