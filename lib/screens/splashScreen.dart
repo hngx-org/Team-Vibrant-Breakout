@@ -68,12 +68,30 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                const Text(
-                  'BREAK OUT GAME',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 40,
-                      color: buttonColor),
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border(
+                          top: BorderSide(
+                              width: 16,
+                              color: shadowColor,
+                              style: BorderStyle.solid),
+                          left: BorderSide(width: 16, color: shadowColor),
+                          bottom: BorderSide(
+                              width: 16,
+                              color: Colors.black,
+                              style: BorderStyle.solid),
+                          right: BorderSide(
+                              width: 16,
+                              color: Colors.black87,
+                              style: BorderStyle.solid))),
+                  child: const Text(
+                    'BREAK OUT GAME',
+                    style: TextStyle(
+                        backgroundColor: buttonColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 35,
+                        color: colorBlack),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
