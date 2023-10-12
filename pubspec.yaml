@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.9.0
+  flame: ^1.9.1
   get: ^4.6.6
   animate_do: ^3.1.2
 
@@ -37,6 +38,15 @@ flutter:
   assets:
     - images/
     # /- images/a_dot_ham.jpeg
+    - assets/images/player.png
+    - assets/images/ball.png
+    - assets/images/goldcoin.png
+    - assets/images/wall.png 
+    - assets/images/diamond.png
+    - assets/images/tile1.png
+    - assets/images/tile2.png
+    - assets/images/tile3.png
+    - assets/images/tile4.png
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
