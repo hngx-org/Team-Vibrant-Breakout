@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:animate_do/animate_do.dart';
 
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
@@ -60,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (context, snapshot) {
         return Scaffold(
           body: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("images/image1.jpeg"), fit: BoxFit.fill)),
             width: double.maxFinite,
@@ -69,30 +72,33 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(7),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(
-                              width: 16,
-                              color: shadowColor,
-                              style: BorderStyle.solid),
-                          left: BorderSide(width: 16, color: shadowColor),
-                          bottom: BorderSide(
-                              width: 16,
-                              color: textColor,
-                              style: BorderStyle.solid),
-                          right: BorderSide(
-                              width: 16,
-                              color: textColor,
-                              style: BorderStyle.solid))),
-                  child: Text(
-                    'BREAKOUT GAME',
-                    style: TextStyle(
-                        backgroundColor: buttonColor,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 35,
-                        color: colorBlack),
+                FadeInLeftBig(
+                  //duration: Duration(milliseconds: 6),
+                  child: Container(
+                    padding: EdgeInsets.all(7),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            top: BorderSide(
+                                width: 16,
+                                color: shadowColor,
+                                style: BorderStyle.solid),
+                            left: BorderSide(width: 16, color: shadowColor),
+                            bottom: BorderSide(
+                                width: 16,
+                                color: Colors.black87,
+                                style: BorderStyle.solid),
+                            right: BorderSide(
+                                width: 16,
+                                color: Colors.black87,
+                                style: BorderStyle.solid))),
+                    child: Text(
+                      'BREAKOUT GAME',
+                      style: TextStyle(
+                          //backgroundColor: buttonColor,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 35,
+                          color: buttonColor),
+                    ),
                   ),
                 ),
                 SizedBox(

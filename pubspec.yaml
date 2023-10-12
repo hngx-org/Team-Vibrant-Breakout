@@ -17,7 +17,8 @@ dependencies:
   flutter_screenutil: ^5.9.0
   get: ^4.6.6
   rive: ^0.11.17
-  simple_animations: ^5.0.2
+  animate_do: ^3.1.2
+ 
   
   
 
