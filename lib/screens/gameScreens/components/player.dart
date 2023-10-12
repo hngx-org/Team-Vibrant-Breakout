@@ -32,14 +32,18 @@ class Player extends SpriteComponent
   @override
   void update(double dt) {
     super.update(dt);
-    position.x += speed * dt;
+    // position.x += speed * dt;
   }
 
   void moveLeft() {
-    x -= speed;
+    if (position.x > 0) {
+      x -= speed;
+    }
   }
 
-  void moveRight() {
-    x += speed;
+  void moveRight(double size) {
+    if (position.x < size) {
+      x += speed;
+    }
   }
 }

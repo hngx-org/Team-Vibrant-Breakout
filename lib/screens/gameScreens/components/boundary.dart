@@ -11,11 +11,14 @@ class Boundary extends SpriteComponent
     required Vector2 size,
     this.isBottom = false,
     required this.boundarySprite,
-  }) : super() {
+  }) : super(
+    sprite: boundarySprite,
+  ) {
     this.position = position;
     this.size = size;
   }
 
+  
   Sprite boundarySprite;
   bool isBottom;
 
