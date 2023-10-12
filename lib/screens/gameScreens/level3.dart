@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/services/keyboard_key.g.dart';
 import 'package:flutter/src/services/raw_keyboard.dart';
@@ -99,16 +98,18 @@ class BrickGame extends FlameGame
 
     List.generate(size[0] ~/ 80, (index) async {
       var random = Random().nextInt(4);
-      bricks1.add(
-        Brick(
-          brickSprite: await Sprite.load('tile${random + 1}.png'),
-          brickPosition: Vector2(index * 80, 0),
-        ),
-      );
+      if (index % 2 == 0) {
+        bricks1.add(
+          Brick(
+            brickSprite: await Sprite.load('tile${random + 1}.png'),
+            brickPosition: Vector2(index * 80, 0),
+          ),
+        );
+      }
     });
     List.generate(size[0] ~/ 80, (index) async {
       var random = Random().nextInt(4);
-      if (index % 2 == 0) {
+      if (true) {
         {
           bricks2.add(
             Brick(
@@ -121,7 +122,7 @@ class BrickGame extends FlameGame
     });
     List.generate(size[0] ~/ 80, (index) async {
       var random = Random().nextInt(4);
-      if (index % 3 == 0) {
+      if (index % 2 == 0) {
         {
           bricks3.add(
             Brick(
