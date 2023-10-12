@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/gameScreen.dart';
@@ -67,8 +68,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
-              children: [
+              children: <Widget>[
                 Container(
+                  padding: EdgeInsets.all(7),
                   decoration: BoxDecoration(
                       border: Border(
                           top: BorderSide(
@@ -78,14 +80,14 @@ class _SplashScreenState extends State<SplashScreen> {
                           left: BorderSide(width: 16, color: shadowColor),
                           bottom: BorderSide(
                               width: 16,
-                              color: Colors.black,
+                              color: textColor,
                               style: BorderStyle.solid),
                           right: BorderSide(
                               width: 16,
-                              color: Colors.black87,
+                              color: textColor,
                               style: BorderStyle.solid))),
-                  child: const Text(
-                    'BREAK OUT GAME',
+                  child: Text(
+                    'BREAKOUT GAME',
                     style: TextStyle(
                         backgroundColor: buttonColor,
                         fontWeight: FontWeight.w700,
