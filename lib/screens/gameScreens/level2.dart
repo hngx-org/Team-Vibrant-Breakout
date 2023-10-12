@@ -107,7 +107,7 @@ class BrickGame extends FlameGame
     });
     List.generate(size[0] ~/ 80, (index) async {
       var random = Random().nextInt(4);
-      if (index % 2 == 0) {
+      if (index % 3 == 0) {
         {
           bricks2.add(
             Brick(
@@ -120,7 +120,7 @@ class BrickGame extends FlameGame
     });
     List.generate(size[0] ~/ 80, (index) async {
       var random = Random().nextInt(4);
-      if (index % 3 == 0) {
+      if (index % 2 == 0) {
         {
           bricks3.add(
             Brick(
