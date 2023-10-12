@@ -1,3 +1,4 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,6 +10,8 @@ import 'package:team_vibrant_breakout/screens/starterPage.dart';
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Flame.device.fullScreen();
   runApp(const MyApp());
 }
 
