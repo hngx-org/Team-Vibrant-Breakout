@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 //import 'package:rive/rive.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,14 +39,35 @@ class StarterPage extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              const Hero(
+              Hero(
                 tag: titleAnimationTag,
-                child: Text(
-                  'Retro Breakout',
-                  style: TextStyle(
-                    color: buttonColor,
-                    fontSize: 40,
-                    fontWeight: FontWeight.w500,
+                child: Container(
+                  padding: EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          top: BorderSide(
+                              width: 16,
+                              color: shadowColor,
+                              style: BorderStyle.solid),
+                          left: BorderSide(width: 16, color: shadowColor),
+                          bottom: BorderSide(
+                              width: 16,
+                              color: Colors.black87,
+                              style: BorderStyle.solid),
+                          right: BorderSide(
+                              width: 16,
+                              color: Colors.black87,
+                              style: BorderStyle.solid))),
+                  child: BounceInLeft(
+                    delay: Duration(milliseconds: 6),
+                    child: Text(
+                      'Retro Breakout',
+                      style: TextStyle(
+                        color: buttonColor,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -53,22 +75,26 @@ class StarterPage extends StatelessWidget {
               const SizedBox(
                 height: 80,
               ),
-              GameScreenButton(
-                onTap: () {
-                  Get.to(const GameScreen());
-                },
-                label: 'Play',
+              BounceInLeft(
+                child: GameScreenButton(
+                  onTap: () {
+                    Get.to(const GameScreen());
+                  },
+                  label: 'Play',
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              GameScreenButton(
-                onTap: () {
-                  Get.dialog(
-                    GameLevels(),
-                  );
-                },
-                label: 'Levels',
+              BounceInLeft(
+                child: GameScreenButton(
+                  onTap: () {
+                    Get.dialog(
+                      GameLevels(),
+                    );
+                  },
+                  label: 'Levels',
+                ),
               ),
               const SizedBox(height: 10),
               // GameScreenButton(
@@ -80,13 +106,15 @@ class StarterPage extends StatelessWidget {
               //   label: 'Settings',
               // ),
               //const SizedBox(height: 10),
-              GameScreenButton(
-                onTap: () {
-                  Get.dialog(
-                    CustomDialogWidget(),
-                  );
-                },
-                label: 'Exit',
+              BounceInLeft(
+                child: GameScreenButton(
+                  onTap: () {
+                    Get.dialog(
+                      CustomDialogWidget(),
+                    );
+                  },
+                  label: 'Exit',
+                ),
               ),
               const Spacer(),
             ],
