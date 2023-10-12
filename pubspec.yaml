@@ -41,7 +41,7 @@ flutter:
     - assets/images/player.png
     - assets/images/ball.png
     - assets/images/goldcoin.png
-    - assets/images/wall.png 
+    - assets/images/wall.png
     - assets/images/diamond.png
     - assets/images/tile1.png
     - assets/images/tile2.png
