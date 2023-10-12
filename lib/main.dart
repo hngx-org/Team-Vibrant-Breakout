@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
-import 'package:team_vibrant_breakout/screens/gameScreen.dart';
 import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
   runApp(const MyApp());
