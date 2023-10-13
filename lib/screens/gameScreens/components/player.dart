@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 
 class Player extends SpriteComponent
@@ -30,9 +31,21 @@ class Player extends SpriteComponent
   }
 
   @override
-  void update(double dt) {
-    super.update(dt);
+  void update(double dt, {TapDownEvent? event}) {
     // position.x += speed * dt;
+    if (event != null) {
+      movement(event);
+    }
+    super.update(dt);
+  }
+
+  void movement(TapDownEvent event) {
+    if (event.localPosition[0] >= game.size[0] / 2 &&
+        position[0] < game.size[0] - 100) {
+      moveRight(game.size[0]);
+    } else if (event.localPosition[0] < game.size[0] / 2 && position[0] > 0) {
+      moveLeft();
+    }
   }
 
   void moveLeft() {

@@ -16,38 +16,62 @@ import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart
 import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 
 class BrickGame extends FlameGame
-    with TapCallbacks, KeyboardEvents, HasCollisionDetection {
+    with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   BrickGame() : super();
 
   late Player player;
   late TextComponent currentScore;
   int score = 0;
   final boundaries = <Boundary>[];
+  bool tapping = false;
+  TapDownEvent? event;
   late Ball ball;
 
-  // @override
-  // void onTapDown(TapDownInfo info) {
-  // if (info.eventPosition.widget[0] > player.position[0] &&
-  //     player.position[0] < size[0] - 100) {
-  //   player.position[0] += 2;
-  // } else if (info.eventPosition.widget[0] < player.position[0] &&
-  //     player.position[0] > 0) {
-  //   player.position[0] -= 2;
-  // }
-  //   super.onTapDown(info);
-  // }
+  @override
+  void onTapDown(TapDownEvent event) {
+    tapping = true;
+    this.event = event;
+    // if (tapping) {
+    //   if (event.localPosition[0] > player.position[0] &&
+    //       player.position[0] < size[0] - 100) {
+    //     player.moveRight(size[0]);
+    //   } else if (event.localPosition[0] < player.position[0] &&
+    //       player.position[0] > 0) {
+    //     player.moveLeft();
+    //   }
+    // }
+    super.onTapDown(event);
+  }
 
-  // @override
-  // void onTapDown(TapDownEvent event) {
-  //   if (event.localPosition[0] > player.position[0] &&
-  //       player.position[0] < size[0] - 100) {
-  //     player.moveRight();
-  //   } else if (event.localPosition[0] < player.position[0] &&
-  //       player.position[0] > 0) {
-  //     player.moveLeft();
-  //   }
-  //   super.onLongTapDown(event);
-  // }
+  @override
+  void onTapUp(TapUpEvent event) {
+    tapping = false;    
+    super.onTapUp(event);
+  }
+
+  @override
+  void onDragStart(DragStartEvent event) {
+    if (event.localPosition[0] > player.position[0] &&
+        player.position[0] < size[0] - 100) {
+      player.moveLeft();
+    } else if (event.localPosition[0] < player.position[0] &&
+        player.position[0] > 0) {
+      player.moveRight(size[0]);
+    }
+    super.onDragStart(event);
+  }
+
+  @override
+  void onDragUpdate(DragUpdateEvent event) {
+    if (event.localPosition[0] > player.position[0] &&
+        player.position[0] < size[0] - 100) {
+      player.moveLeft();
+    } else if (event.localPosition[0] < player.position[0] &&
+        player.position[0] > 0) {
+      player.moveRight(size[0]);
+    }
+    super.onDragUpdate(event);
+  }
 
   void gameOver() {
     // Reset score
@@ -187,8 +211,10 @@ class BrickGame extends FlameGame
     // } else if (player.position.x > size[0] - player.size[0]) {
     //   player.position.x = size.x - player.size.x;
     // }
+    if(tapping){
+      player.update(dt, event: event);
+    }
     ball.update(dt);
-    player.update(dt);
 
     // currentScore.text = score.toString();
 
