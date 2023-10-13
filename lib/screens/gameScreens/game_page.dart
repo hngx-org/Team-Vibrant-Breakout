@@ -16,6 +16,7 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
+    game = BrickGame();
     return Scaffold(
       body: Column(
         children: [

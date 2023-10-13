@@ -75,7 +75,7 @@ class Ball extends SpriteComponent
     // final newAngle = angle + offset;
 
     if (other is Player) {
-      FlameAudio.play('audio/hit.wav');
+      // FlameAudio.play('audio/hit.wav');
       if (otherRect.overlaps(thisRect)) {
         Rect intersection = thisRect.intersect(otherRect);
         if (intersection.height < intersection.width &&
@@ -101,7 +101,7 @@ class Ball extends SpriteComponent
         }
       }
     } else if (other is Brick) {
-      FlameAudio.play('audio/shot.wav');
+      // FlameAudio.play('audio/shot.wav');
       if (otherRect.overlaps(thisRect)) {
         Rect intersection = thisRect.intersect(otherRect);
         if (intersection.height > intersection.width) {
@@ -117,7 +117,7 @@ class Ball extends SpriteComponent
         }
       }
     } else if (other is Boundary) {
-      FlameAudio.play('audio/hit.wav');
+      // FlameAudio.play('audio/hit.wav');
       if (!other.isBottom) {
         if (position.x < 0 || position.x > game.size.x - (width)) {
           velocity.x *= -1;
@@ -143,10 +143,17 @@ class Ball extends SpriteComponent
       velocity.x *= -1;
       // angle = pi - angle;
     }
-    if (position.y < 0 || position.y > game.size.y - (height)) {
+    if (position.y < 0) {
+      // || position.y > game.size.y - (height)) {
       // angle = -angle;
 
       velocity.y *= -1;
+    }
+
+    if (position.y > game.size.y - (height)) {
+      // Ball is below the player's position, triggering game over
+      gameRef.gameOver();
+      return;
     }
 
     super.update(dt);

@@ -62,6 +62,7 @@ class _GameToolBarState extends State<GameToolBar> {
 
   @override
   Widget build(BuildContext context) {
+    // currentScore.text = gameRef.score.toString();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
