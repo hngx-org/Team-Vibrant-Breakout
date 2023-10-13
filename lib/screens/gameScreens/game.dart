@@ -62,7 +62,7 @@ class BrickGame extends FlameGame
     // Add any additional reset logic here
 
     // Show game over screen
-    Get.to(() => GameOver());
+    Get.off(() => GameOver());
   }
 
   @override

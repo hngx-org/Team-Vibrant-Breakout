@@ -68,7 +68,7 @@ class StarterPage extends StatelessWidget {
                       style: myfont(
                           textStyle: TextStyle(
                         color: buttonColor,
-                        fontSize: 30,
+                        fontSize: 25,
                       )),
                     ),
                   ),

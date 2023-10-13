@@ -6,11 +6,12 @@ import 'package:team_vibrant_breakout/screens/settingPage.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 class GameToolBar extends StatefulWidget {
-  const GameToolBar(
-      {super.key,
-      required this.onSettingsTap,
-      required this.onPause,
-      required this.onResume});
+  const GameToolBar({
+    super.key,
+    required this.onSettingsTap,
+    required this.onPause,
+    required this.onResume,
+  });
 
   final VoidCallback onSettingsTap;
   final VoidCallback onPause;
@@ -23,6 +24,7 @@ class GameToolBar extends StatefulWidget {
 class _GameToolBarState extends State<GameToolBar> {
   int score = 0;
   bool isPaused = false;
+  SharedPreferences? _prefs;
 
   @override
   void initState() {
@@ -39,9 +41,9 @@ class _GameToolBarState extends State<GameToolBar> {
 
 // load score from Shared preferences
   _loadScore() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _prefs = await SharedPreferences.getInstance();
     setState(() {
-      score = prefs.getInt('score') ?? 0;
+      score = _prefs?.getInt('score') ?? 0;
     });
   }
 
@@ -55,7 +57,7 @@ class _GameToolBarState extends State<GameToolBar> {
   // Increase Score and Save to SharedPreferences
   void increaseScore() {
     setState(() {
-      score++;
+      score += 10;
       _saveScore();
     });
   }

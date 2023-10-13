@@ -12,8 +12,8 @@ import 'package:team_vibrant_breakout/screens/gameLevels.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
-class GameOver extends StatelessWidget {
-  GameOver({super.key});
+class LevelComplete extends StatelessWidget {
+  LevelComplete({super.key});
 
   static var myfont = GoogleFonts.pressStart2p;
 
@@ -50,7 +50,7 @@ class GameOver extends StatelessWidget {
                   child: BounceInDown(
                     delay: Duration(milliseconds: 6),
                     child: Text(
-                      'G A M E  O V E R',
+                      'C O N G R A T I O N S',
                       style: myfont(
                           textStyle: TextStyle(
                         color: buttonColor,
@@ -69,7 +69,19 @@ class GameOver extends StatelessWidget {
                   onTap: () {
                     Get.off(() => GamePage());
                   },
-                  label: 'Play Again',
+                  label: 'Continue',
+                ),
+              ),
+
+              const SizedBox(
+                height: 80,
+              ),
+              BounceInUp(
+                child: GameScreenButton(
+                  onTap: () {
+                    Get.off(() => StarterPage());
+                  },
+                  label: 'Exit',
                 ),
               ),
             ]),
