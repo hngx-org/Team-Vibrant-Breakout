@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/game.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 
 class Player extends SpriteComponent
-    with CollisionCallbacks, HasGameRef<BrickGame> {
+    with CollisionCallbacks, HasGameRef<BrickGameBaseClass> {
   Player({
     required this.playerSprite,
     required this.playerSize,
@@ -34,29 +36,29 @@ class Player extends SpriteComponent
   void update(double dt, {TapDownEvent? event}) {
     // position.x += speed * dt;
     if (event != null) {
-      movement(event);
+      movement(event, dt);
     }
     super.update(dt);
   }
 
-  void movement(TapDownEvent event) {
+  void movement(TapDownEvent event, double dt) {
     if (event.localPosition[0] >= game.size[0] / 2 &&
         position[0] < game.size[0] - 100) {
-      moveRight(game.size[0]);
-    } else if (event.localPosition[0] < game.size[0] / 2 && position[0] > 0) {
-      moveLeft();
+      moveRight(game.size[0], dt);
+    } else if (event.localPosition[0] < (game.size[0] / 2 ) - 10 && position[0] > 0) {
+      moveLeft(dt);
     }
   }
 
-  void moveLeft() {
+  void moveLeft(double dt) {
     if (position.x > 0) {
-      x -= speed;
+      x -= speed *50* dt;
     }
   }
 
-  void moveRight(double size) {
+  void moveRight(double size, double dt) {
     if (position.x < size) {
-      x += speed;
+      x += speed * 50*dt;
     }
   }
 }
