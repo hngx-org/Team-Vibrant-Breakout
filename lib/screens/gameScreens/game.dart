@@ -133,8 +133,6 @@ class BrickGame extends FlameGame
     // Reset player position
     player.position = Vector2(size.x / 2 - 50, size.y - 50);
 
-    // Add any additional reset logic here
-
     // Show game over screen
     Get.off(() => GameOver());
   }
