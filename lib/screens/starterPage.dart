@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 //import 'package:rive/rive.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,8 +9,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
-import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
-import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
+
 
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
@@ -82,24 +82,24 @@ class StarterPage extends StatelessWidget {
               BounceInLeft(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.to(GamePage(brickGame: BrickGame(),));
+                    Get.to(() => const GameLevels());
                   },
                   label: 'Play',
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              BounceInLeft(
-                child: GameScreenButton(
-                  onTap: () {
-                    Get.dialog(
-                      GameLevels(),
-                    );
-                  },
-                  label: 'Levels',
-                ),
-              ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // BounceInLeft(
+              //   child: GameScreenButton(
+              //     onTap: () {
+              //       Get.dialog(
+              //         GameLevels(),
+              //       );
+              //     },
+              //     label: 'Levels',
+              //   ),
+              // ),
               const SizedBox(height: 10),
               // GameScreenButton(
               //   onTap: () {
