@@ -236,11 +236,11 @@ class BrickGame extends BrickGameBaseClass
     brickLayer.add(bricks4);
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
-    currentScore = TextComponent(
-      text: score.toString(),
-      position: Vector2(size[0] / 2 - 10, 10),
-    );
-    await add(currentScore);
+    // currentScore = TextComponent(
+    //   text: score.toString(),
+    //   position: Vector2(size[0] / 2 - 10, 10),
+    // );
+    // await add(currentScore);
 
     player = Player(
       playerSprite: await Sprite.load('player.png'),
