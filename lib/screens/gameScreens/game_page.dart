@@ -1,5 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
 
@@ -15,6 +16,7 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
+    game = BrickGame();
     return Scaffold(
       body: Column(
         children: [

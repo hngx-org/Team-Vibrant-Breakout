@@ -1,17 +1,19 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 //import 'package:rive/rive.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
-import 'package:team_vibrant_breakout/screens/gameScreen.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
 
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
+
+  static var myfont = GoogleFonts.pressStart2p;
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +65,11 @@ class StarterPage extends StatelessWidget {
                     delay: Duration(milliseconds: 6),
                     child: Text(
                       'Retro Breakout',
-                      style: TextStyle(
+                      style: myfont(
+                          textStyle: TextStyle(
                         color: buttonColor,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w800,
-                      ),
+                        fontSize: 25,
+                      )),
                     ),
                   ),
                 ),

@@ -14,11 +14,10 @@ class Brick extends SpriteComponent
           sprite: brickSprite,
           size: Vector2(80, 40),
           position: brickPosition,
-          
         );
 
   @override
-  FutureOr<void> onLoad() async{
+  FutureOr<void> onLoad() async {
     await add(RectangleHitbox());
     return super.onLoad();
   }
@@ -26,6 +25,7 @@ class Brick extends SpriteComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Ball) {
+      gameRef.score++;
       removeFromParent();
     }
     super.onCollision(intersectionPoints, other);

@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/services/keyboard_key.g.dart';
 import 'package:flutter/src/services/raw_keyboard.dart';
@@ -11,6 +13,7 @@ import 'package:team_vibrant_breakout/screens/gameScreens/components/ball.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 
 class BrickGame extends FlameGame
     with TapCallbacks, KeyboardEvents, HasCollisionDetection {
@@ -45,6 +48,22 @@ class BrickGame extends FlameGame
   //   }
   //   super.onLongTapDown(event);
   // }
+
+  void gameOver() {
+    // Reset score
+    score = 0;
+
+    // Reset ball position
+    ball.position = Vector2(size.x / 2, size.y / 2);
+
+    // Reset player position
+    player.position = Vector2(size.x / 2 - 50, size.y - 50);
+
+    // Add any additional reset logic here
+
+    // Show game over screen
+    Get.off(() => GameOver());
+  }
 
   @override
   KeyEventResult onKeyEvent(
@@ -145,6 +164,8 @@ class BrickGame extends FlameGame
       text: score.toString(),
       position: Vector2(size[0] / 2 - 10, 10),
     );
+    await add(currentScore);
+
     player = Player(
       playerSprite: await Sprite.load('player.png'),
       playerSize: size,
@@ -168,6 +189,9 @@ class BrickGame extends FlameGame
     // }
     ball.update(dt);
     player.update(dt);
+
+    // currentScore.text = score.toString();
+
     super.update(dt);
   }
 }

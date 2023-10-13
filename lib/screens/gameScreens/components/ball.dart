@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
@@ -39,8 +40,11 @@ class Ball extends SpriteComponent
   //   super.onCollision(intersectionPoints, other);
   // }
 
+  SharedPreferences? _prefs;
+
   @override
-  FutureOr<void> onLoad() {
+  FutureOr<void> onLoad() async {
+    _prefs = await SharedPreferences.getInstance();
     position = Vector2(game.size.x / 2, game.size.y / 2);
     // add(CircleHitbox());
     return super.onLoad();
@@ -75,7 +79,7 @@ class Ball extends SpriteComponent
     // final newAngle = angle + offset;
 
     if (other is Player) {
-      FlameAudio.play('audio/hit.wav');
+      // FlameAudio.play('audio/hit.wav');
       if (otherRect.overlaps(thisRect)) {
         Rect intersection = thisRect.intersect(otherRect);
         if (intersection.height < intersection.width &&
@@ -101,7 +105,9 @@ class Ball extends SpriteComponent
         }
       }
     } else if (other is Brick) {
-      FlameAudio.play('audio/shot.wav');
+      gameRef.score += 50; // Increase score by 50
+      _prefs?.setInt('score', gameRef.score);
+      // FlameAudio.play('audio/shot.wav');
       if (otherRect.overlaps(thisRect)) {
         Rect intersection = thisRect.intersect(otherRect);
         if (intersection.height > intersection.width) {
@@ -117,7 +123,7 @@ class Ball extends SpriteComponent
         }
       }
     } else if (other is Boundary) {
-      FlameAudio.play('audio/hit.wav');
+      // FlameAudio.play('audio/hit.wav');
       if (!other.isBottom) {
         if (position.x < 0 || position.x > game.size.x - (width)) {
           velocity.x *= -1;
@@ -143,10 +149,17 @@ class Ball extends SpriteComponent
       velocity.x *= -1;
       // angle = pi - angle;
     }
-    if (position.y < 0 || position.y > game.size.y - (height)) {
+    if (position.y < 0) {
+      // || position.y > game.size.y - (height)) {
       // angle = -angle;
 
       velocity.y *= -1;
+    }
+
+    if (position.y > game.size.y - (height)) {
+      // Ball is below the player's position, triggering game over
+      gameRef.gameOver();
+      return;
     }
 
     super.update(dt);
