@@ -33,13 +33,13 @@ class StarterPage extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'HighScore: 0000',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        color: buttonColor),
-                  ),
+                  // Text(
+                  //   'HighScore: 0000',
+                  //   style: TextStyle(
+                  //       fontWeight: FontWeight.bold,
+                  //       fontSize: 25,
+                  //       color: buttonColor),
+                  // ),
                 ],
               ),
               const Spacer(),
@@ -69,7 +69,7 @@ class StarterPage extends StatelessWidget {
                       style: myfont(
                           textStyle: TextStyle(
                         color: buttonColor,
-                        fontSize: 25,
+                        fontSize: 22,
                       )),
                     ),
                   ),
