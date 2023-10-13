@@ -69,47 +69,50 @@ class _GameToolBarState extends State<GameToolBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        IconButton(
-          onPressed: () {
-            setState(() {
-              isPaused = true;
-              widget.onSettingsTap();
-            });
-            Get.to(() => const SettingsDialog());
-          },
-          icon: Icon(
-            Icons.settings_applications,
-            color: shadowColor,
-            size: 40,
+    return Container(
+      color: Color.fromARGB(255, 188, 99, 204),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isPaused = true;
+                widget.onSettingsTap();
+              });
+              Get.to(() => const SettingsDialog());
+            },
+            icon: Icon(
+              Icons.settings_applications,
+              color: buttonColor,
+              size: 40,
+            ),
           ),
-        ),
-        Obx(
-          () => Text(
-            'Score: ${scoreController.score.value}',
-            style: TextStyle(fontSize: 30, color: shadowColor),
+          Obx(
+            () => Text(
+              'Score: ${scoreController.score.value}',
+              style: TextStyle(fontSize: 30, color: buttonColor),
+            ),
           ),
-        ),
 
-        IconButton(
-          onPressed: togglePauseUponPress,
-          icon: Icon(
-            !isPaused ? Icons.pause_circle : Icons.play_circle_fill,
-            color: shadowColor,
-            size: 40,
+          IconButton(
+            onPressed: togglePauseUponPress,
+            icon: Icon(
+              !isPaused ? Icons.pause_circle : Icons.play_circle_fill,
+              color: buttonColor,
+              size: 40,
+            ),
           ),
-        ),
 
-        // IconButton(
-        //     onPressed: null,
-        //     icon: Icon(
-        //       Icons.music_off,
-        //       color: shadowColor,
-        //       size: 40,
-        //     ))
-      ],
+          // IconButton(
+          //     onPressed: null,
+          //     icon: Icon(
+          //       Icons.music_off,
+          //       color: shadowColor,
+          //       size: 40,
+          //     ))
+        ],
+      ),
     );
   }
 }
