@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/game.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 
 class Player extends SpriteComponent
-    with CollisionCallbacks, HasGameRef<BrickGame> {
+    with CollisionCallbacks, HasGameRef<BrickGameBaseClass> {
   Player({
     required this.playerSprite,
     required this.playerSize,

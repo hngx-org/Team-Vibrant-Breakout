@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:get/get.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/ball.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 
 import '../../../constants/controllers.dart';
 
 class Brick extends SpriteComponent
-    with CollisionCallbacks, HasGameRef<BrickGame> {
+    with CollisionCallbacks, HasGameRef<BrickGameBaseClass> {
   ScoreController scoreController = Get.put(ScoreController());
 
   Brick({
@@ -42,7 +43,6 @@ class Brick extends SpriteComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Ball) {
       scoreController.updateScore(scoreController.score.value + 50);
-      gameRef.brickDestroyed();
       removeFromParent();
     }
     super.onCollision(intersectionPoints, other);
