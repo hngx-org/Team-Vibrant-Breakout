@@ -15,6 +15,8 @@ import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart'
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 
+import '../stageComplete.dart';
+
 class BrickGame extends FlameGame
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   BrickGame() : super();
@@ -105,6 +107,22 @@ class BrickGame extends FlameGame
     super.onDragUpdate(event);
   }
 
+  int totalBricks = 0;
+
+  void brickDestroyed() {
+    totalBricks--;
+
+    if (totalBricks == 0) {
+      // All bricks are cleared, show congratulatory message and navigate
+      showCongratulatoryPage();
+    }
+  }
+
+  void showCongratulatoryPage() {
+    // Navigate to congratulatory page or show a message
+    Get.off(() => LevelComplete());
+  }
+
   void gameOver() {
     // Reset score
     score = 0;
@@ -114,8 +132,6 @@ class BrickGame extends FlameGame
 
     // Reset player position
     player.position = Vector2(size.x / 2 - 50, size.y - 50);
-
-    // Add any additional reset logic here
 
     // Show game over screen
     Get.off(() => GameOver());
@@ -217,11 +233,11 @@ class BrickGame extends FlameGame
       );
     });
     brickLayer.addAll([bricks1, bricks2, bricks3, bricks4]);
-    currentScore = TextComponent(
-      text: score.toString(),
-      position: Vector2(size[0] / 2 - 10, 10),
-    );
-    await add(currentScore);
+    // currentScore = TextComponent(
+    //   text: score.toString(),
+    //   position: Vector2(size[0] / 2 - 10, 10),
+    // );
+    // await add(currentScore);
 
     player = Player(
       playerSprite: await Sprite.load('player.png'),

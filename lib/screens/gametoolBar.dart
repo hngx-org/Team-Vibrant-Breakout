@@ -5,8 +5,10 @@ import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/screens/settingPage.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
+import '../constants/controllers.dart';
+
 class GameToolBar extends StatefulWidget {
-  const GameToolBar({
+  GameToolBar({
     super.key,
     required this.onSettingsTap,
     required this.onPause,
@@ -26,10 +28,13 @@ class _GameToolBarState extends State<GameToolBar> {
   bool isPaused = false;
   SharedPreferences? _prefs;
 
+  late ScoreController scoreController;
+
   @override
   void initState() {
     super.initState();
     _loadScore();
+    scoreController = Get.put(ScoreController());
   }
 
   void togglePauseUponPress() {
@@ -81,9 +86,11 @@ class _GameToolBarState extends State<GameToolBar> {
             size: 40,
           ),
         ),
-        Text(
-          'Score: $score',
-          style: TextStyle(fontSize: 30, color: shadowColor),
+        Obx(
+          () => Text(
+            'Score: ${scoreController.score.value}',
+            style: TextStyle(fontSize: 30, color: shadowColor),
+          ),
         ),
 
         IconButton(
