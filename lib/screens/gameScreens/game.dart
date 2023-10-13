@@ -18,14 +18,13 @@ class BrickGame extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   BrickGame() : super();
 
-  
   @override
   int score = 0;
 
   late Player player;
   late TextComponent currentScore;
   List<List<Brick>> brickLayer = [];
-  
+
   late double yLocus;
   late double newDt;
   final boundaries = <Boundary>[];

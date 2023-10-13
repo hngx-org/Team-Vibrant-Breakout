@@ -17,6 +17,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  static var myfont = GoogleFonts.pressStart2p;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -55,11 +56,11 @@ class _SplashScreenState extends State<SplashScreen> {
                                 style: BorderStyle.solid))),
                     child: Text(
                       'BREAKOUT GAME',
-                      style: TextStyle(
-                          //backgroundColor: buttonColor,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 35,
-                          color: buttonColor),
+                      style: myfont(
+                          textStyle: TextStyle(
+                        color: buttonColor,
+                        fontSize: 22,
+                      )),
                     ),
                   ),
                 ),
