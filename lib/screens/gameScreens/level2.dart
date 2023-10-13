@@ -18,18 +18,17 @@ import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 
 import '../stageComplete.dart';
 
-class BrickGame extends BrickGameBaseClass
+class Level2 extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
-  BrickGame() : super();
+  Level2() : super();
 
-  
   @override
   int score = 0;
 
   late Player player;
   late TextComponent currentScore;
   List<List<Brick>> brickLayer = [];
-  
+
   late double yLocus;
   late double newDt;
   final boundaries = <Boundary>[];
@@ -172,6 +171,7 @@ class BrickGame extends BrickGameBaseClass
     List<Brick> bricks4 = [];
     List<Brick> bricks5 = [];
     List<Brick> bricks6 = [];
+    List<Brick> bricks7 = [];
 
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
@@ -235,12 +235,26 @@ class BrickGame extends BrickGameBaseClass
         ),
       );
     });
+    List.generate(size[0] ~/ (size.x / 5), (index) async {
+      var random = Random().nextInt(4);
+      if (index % 3 == 0) {
+        {
+          bricks7.add(
+            Brick(
+              brickSprite: await Sprite.load('tile${random + 1}.png'),
+              brickPosition: Vector2(index * (size.x / 5), yLocus + 180),
+            ),
+          );
+        }
+      }
+    });
     brickLayer.add(bricks1);
     brickLayer.add(bricks2);
     brickLayer.add(bricks3);
     brickLayer.add(bricks4);
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
+    brickLayer.add(bricks7);
     currentScore = TextComponent(
       text: score.toString(),
       position: Vector2(size[0] / 2 - 10, 10),

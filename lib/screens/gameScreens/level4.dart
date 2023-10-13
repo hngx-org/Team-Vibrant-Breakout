@@ -171,6 +171,8 @@ class Level4 extends BrickGameBaseClass
     List<Brick> bricks4 = [];
     List<Brick> bricks5 = [];
     List<Brick> bricks6 = [];
+    List<Brick> bricks7 = [];
+    List<Brick> bricks8 = [];
 
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
@@ -234,12 +236,36 @@ class Level4 extends BrickGameBaseClass
         ),
       );
     });
+    List.generate(size[0] ~/ (size.x / 5), (index) async {
+      var random = Random().nextInt(2);
+      if (index % 2 == 0) {
+        {
+          bricks7.add(
+            Brick(
+              brickSprite: await Sprite.load('tile${random + 1}.png'),
+              brickPosition: Vector2(index * (size.x / 5), yLocus + 180),
+            ),
+          );
+        }
+      }
+    });
+        List.generate(size[0] ~/ (size.x / 5), (index) async {
+      var random = Random().nextInt(3);
+      bricks8.add(
+        Brick(
+          brickSprite: await Sprite.load('tile${random + 1}.png'),
+          brickPosition: Vector2(index * (size.x / 5), yLocus + 210),
+        ),
+      );
+    });
     brickLayer.add(bricks1);
     brickLayer.add(bricks2);
     brickLayer.add(bricks3);
     brickLayer.add(bricks4);
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
+    brickLayer.add(bricks7);
+    brickLayer.add(bricks8);
     currentScore = TextComponent(
       text: score.toString(),
       position: Vector2(size[0] / 2 - 10, 10),

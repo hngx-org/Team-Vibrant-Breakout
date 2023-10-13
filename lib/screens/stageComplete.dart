@@ -10,6 +10,7 @@ import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/level2.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 class LevelComplete extends StatelessWidget {
@@ -67,7 +68,7 @@ class LevelComplete extends StatelessWidget {
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.off(() => GamePage());
+                    Get.off(() => GamePage(brickGame: Level2(),));
                   },
                   label: 'Continue',
                 ),
