@@ -105,8 +105,6 @@ class Ball extends SpriteComponent
         }
       }
     } else if (other is Brick) {
-      gameRef.score += 50; // Increase score by 50
-      _prefs?.setInt('score', gameRef.score);
       // FlameAudio.play('audio/shot.wav');
       if (otherRect.overlaps(thisRect)) {
         Rect intersection = thisRect.intersect(otherRect);
