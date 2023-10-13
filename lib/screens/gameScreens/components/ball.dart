@@ -24,6 +24,7 @@ class Ball extends SpriteComponent
   Vector2 velocity = Vector2(0, 1);
   Sprite ballSprite;
   double xSign = 1;
+  late int destroyedBricks;
 
   double ySign = 1;
   // @override
@@ -44,6 +45,7 @@ class Ball extends SpriteComponent
 
   @override
   FutureOr<void> onLoad() async {
+    destroyedBricks = 0;
     _prefs = await SharedPreferences.getInstance();
     position = Vector2(game.size.x / 2, game.size.y / 2);
     // add(CircleHitbox());
@@ -100,11 +102,12 @@ class Ball extends SpriteComponent
           velocity = Offset.fromDirection(-velocity.x.abs(), velocity.y.abs())
               .toVector2();
         } else {
-          position = Offset(position.x, otherRect.bottom).toVector2();
-          velocity = Offset(0, velocity.y.abs()).toVector2();
+          // position = Offset(position.x, otherRect.bottom).toVector2();
+          // velocity = Offset(0, velocity.y.abs()).toVector2();
         }
       }
     } else if (other is Brick) {
+      destroyedBricks > 10 ? destroyedBricks = 0 : destroyedBricks++;
       gameRef.score += 50; // Increase score by 50
       _prefs?.setInt('score', gameRef.score);
       // FlameAudio.play('audio/shot.wav');

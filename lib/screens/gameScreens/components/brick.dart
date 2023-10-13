@@ -12,17 +12,25 @@ class Brick extends SpriteComponent
     required this.brickPosition,
   }) : super(
           sprite: brickSprite,
-          size: Vector2(80, 40),
-          position: brickPosition,
         );
 
-
-  
   @override
   FutureOr<void> onLoad() async {
+    position = brickPosition;
+    size = Vector2(game.size.x / 5, 30);
     await add(RectangleHitbox());
-    
+
     return super.onLoad();
+  }
+
+  @override
+  void update(double dt) {
+    moveDown();
+    super.update(dt);
+  }
+
+  void moveDown() {
+    position.y + 30;
   }
 
   @override
