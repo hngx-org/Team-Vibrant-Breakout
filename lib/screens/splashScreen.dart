@@ -33,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 FadeInLeftBig(
+                  delay: Duration(milliseconds: 3),
                   //duration: Duration(milliseconds: 6),
                   child: Container(
                     padding: EdgeInsets.all(7),
