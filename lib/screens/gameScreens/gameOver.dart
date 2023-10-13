@@ -9,6 +9,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
@@ -67,7 +68,7 @@ class GameOver extends StatelessWidget {
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.off(() => GamePage());
+                    Get.off(() => GamePage(brickGame: BrickGame(),));
                   },
                   label: 'Play Again',
                 ),

@@ -12,12 +12,18 @@ import 'package:team_vibrant_breakout/screens/starterPage.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
+  
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+<<<<<<< HEAD
   static var myfont = GoogleFonts.pressStart2p;
+=======
+  
+>>>>>>> da3b5f84c03df32ed59eba7064db1e52a3f356f4
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
