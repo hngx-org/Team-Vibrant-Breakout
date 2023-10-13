@@ -18,38 +18,94 @@ import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 import '../stageComplete.dart';
 
 class BrickGame extends FlameGame
-    with TapCallbacks, KeyboardEvents, HasCollisionDetection {
+    with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   BrickGame() : super();
 
   late Player player;
   late TextComponent currentScore;
+  List<List<Brick>> brickLayer = [];
   int score = 0;
+  late double yLocus;
   final boundaries = <Boundary>[];
+  bool tapping = false;
+  TapDownEvent? event;
   late Ball ball;
 
-  // @override
-  // void onTapDown(TapDownInfo info) {
-  // if (info.eventPosition.widget[0] > player.position[0] &&
-  //     player.position[0] < size[0] - 100) {
-  //   player.position[0] += 2;
-  // } else if (info.eventPosition.widget[0] < player.position[0] &&
-  //     player.position[0] > 0) {
-  //   player.position[0] -= 2;
-  // }
-  //   super.onTapDown(info);
-  // }
+  @override
+  void onTapDown(TapDownEvent event) {
+    tapping = true;
+    this.event = event;
+    super.onTapDown(event);
+  }
 
-  // @override
-  // void onTapDown(TapDownEvent event) {
-  //   if (event.localPosition[0] > player.position[0] &&
-  //       player.position[0] < size[0] - 100) {
-  //     player.moveRight();
-  //   } else if (event.localPosition[0] < player.position[0] &&
-  //       player.position[0] > 0) {
-  //     player.moveLeft();
-  //   }
-  //   super.onLongTapDown(event);
-  // }
+  void brickLayerMovement() {
+    bool emptyBricks = false;
+    for (List<Brick> bricks in brickLayer) {
+      for (Brick brick in bricks) {
+        if (brick.isRemoved == true) {
+          bricks.remove(brick);
+        }
+      }
+      if (bricks.isEmpty) {
+        emptyBricks = true;
+        brickLayer.remove(bricks);
+        for (int i = 0; i < brickLayer.length; i++) {
+          for (int j = 0; j < brickLayer[i].length; j++) {
+            brickLayer[i][j].brickPosition = Vector2(
+                brickLayer[i][j].brickPosition.x,
+                brickLayer[i][j].brickPosition.y + 40);
+          }
+        }
+      }
+    }
+    if (emptyBricks) {
+      List<Brick> newBricks = [];
+      List.generate(size[0] ~/ 80, (index) async {
+        var random = Random().nextInt(4);
+        if (index % 2 == 0) {
+          {
+            newBricks.add(
+              Brick(
+                brickSprite: await Sprite.load('tile${random + 1}.png'),
+                brickPosition: Vector2(index * 80, yLocus),
+              ),
+            );
+          }
+        }
+      });
+      brickLayer.insert(0, newBricks);
+    }
+  }
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    tapping = false;
+    super.onTapUp(event);
+  }
+
+  @override
+  void onDragStart(DragStartEvent event) {
+    if (event.localPosition[0] > player.position[0] &&
+        player.position[0] < size[0] - 100) {
+      player.moveLeft();
+    } else if (event.localPosition[0] < player.position[0] &&
+        player.position[0] > 0) {
+      player.moveRight(size[0]);
+    }
+    super.onDragStart(event);
+  }
+
+  @override
+  void onDragUpdate(DragUpdateEvent event) {
+    if (event.localPosition[0] > player.position[0] &&
+        player.position[0] < size[0] - 100) {
+      player.moveLeft();
+    } else if (event.localPosition[0] < player.position[0] &&
+        player.position[0] > 0) {
+      player.moveRight(size[0]);
+    }
+    super.onDragUpdate(event);
+  }
 
   int totalBricks = 0;
 
@@ -99,6 +155,7 @@ class BrickGame extends FlameGame
   @override
   FutureOr<void> onLoad() async {
     ball = Ball(ballSprite: await Sprite.load('ball.png'));
+    yLocus = 0;
     boundaries.add(
       Boundary(
         position: Vector2(0, 0),
@@ -138,7 +195,7 @@ class BrickGame extends FlameGame
       bricks1.add(
         Brick(
           brickSprite: await Sprite.load('tile${random + 1}.png'),
-          brickPosition: Vector2(index * 80, 0),
+          brickPosition: Vector2(index * 80, yLocus),
         ),
       );
     });
@@ -149,7 +206,7 @@ class BrickGame extends FlameGame
           bricks2.add(
             Brick(
               brickSprite: await Sprite.load('tile${random + 1}.png'),
-              brickPosition: Vector2(index * 80, 40),
+              brickPosition: Vector2(index * 80, yLocus + 40),
             ),
           );
         }
@@ -162,7 +219,7 @@ class BrickGame extends FlameGame
           bricks3.add(
             Brick(
               brickSprite: await Sprite.load('tile${random + 1}.png'),
-              brickPosition: Vector2(index * 80, 80),
+              brickPosition: Vector2(index * 80, yLocus + 80),
             ),
           );
         }
@@ -205,8 +262,11 @@ class BrickGame extends FlameGame
     // } else if (player.position.x > size[0] - player.size[0]) {
     //   player.position.x = size.x - player.size.x;
     // }
+    if (tapping) {
+      player.update(dt, event: event);
+    }
     ball.update(dt);
-    player.update(dt);
+    // brickLayerMovement();
 
     // currentScore.text = score.toString();
 

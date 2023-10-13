@@ -21,9 +21,12 @@ class Brick extends SpriteComponent
           position: brickPosition,
         );
 
+
+  
   @override
   FutureOr<void> onLoad() async {
     await add(RectangleHitbox());
+    
     return super.onLoad();
   }
 
