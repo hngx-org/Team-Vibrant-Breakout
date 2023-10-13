@@ -9,20 +9,26 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/services/keyboard_key.g.dart';
 import 'package:flutter/src/services/raw_keyboard.dart';
 import 'package:flutter/src/widgets/focus_manager.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/ball.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 
-class BrickGame extends FlameGame
+import '../stageComplete.dart';
+
+class Level3 extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
-  BrickGame() : super();
+  Level3() : super();
+
+  @override
+  int score = 0;
 
   late Player player;
   late TextComponent currentScore;
   List<List<Brick>> brickLayer = [];
-  int score = 0;
+
   late double yLocus;
   late double newDt;
   final boundaries = <Boundary>[];
@@ -98,6 +104,7 @@ class BrickGame extends FlameGame
   //   super.onDragUpdate(event);
   // }
 
+  @override
   void gameOver() {
     // Reset score
     score = 0;
@@ -107,8 +114,6 @@ class BrickGame extends FlameGame
 
     // Reset player position
     player.position = Vector2(size.x / 2 - 50, size.y - 50);
-
-    // Add any additional reset logic here
 
     // Show game over screen
     Get.off(() => GameOver());

@@ -15,6 +15,8 @@ import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart'
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 
+import '../stageComplete.dart';
+
 class BrickGame extends FlameGame
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   BrickGame() : super();
@@ -107,8 +109,6 @@ class BrickGame extends FlameGame
 
     // Reset player position
     player.position = Vector2(size.x / 2 - 50, size.y - 50);
-
-    // Add any additional reset logic here
 
     // Show game over screen
     Get.off(() => GameOver());
