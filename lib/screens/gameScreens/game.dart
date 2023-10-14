@@ -115,6 +115,17 @@ class BrickGame extends BrickGameBaseClass
     Get.off(() => GameOver());
   }
 
+  void gameReset() {
+    // Reset score
+    score = 0;
+
+    // Reset ball position
+    ball.position = Vector2(size.x / 2, size.y / 2);
+
+    // Reset player position
+    player.position = Vector2(size.x / 2 - 50, size.y - 50);
+  }
+
   @override
   KeyEventResult onKeyEvent(
       RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {

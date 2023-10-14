@@ -55,7 +55,7 @@ class GameOver extends StatelessWidget {
                       style: myfont(
                           textStyle: TextStyle(
                         color: buttonColor,
-                        fontSize: 20,
+                        fontSize: 23,
                       )),
                     ),
                   ),
@@ -68,7 +68,9 @@ class GameOver extends StatelessWidget {
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.off(() => GamePage(brickGame: BrickGame(),));
+                    Get.off(() => GamePage(
+                          brickGame: BrickGame(),
+                        ));
                   },
                   label: 'Play Again',
                 ),
