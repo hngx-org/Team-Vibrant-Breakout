@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       style: myfont(
                           textStyle: TextStyle(
                         color: buttonColor,
-                        fontSize: 22,
+                        fontSize: 24,
                       )),
                     ),
                   ),

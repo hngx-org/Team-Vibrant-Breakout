@@ -32,6 +32,7 @@ class _GamePageState extends State<GamePage> {
             onPause: () => game.paused = true,
             onResume: () => game.paused = false,
             onSettingsTap: () => game.paused = true,
+            onRestart: () => game.paused = true,
           ),
           Expanded(
             child: GameWidget(
