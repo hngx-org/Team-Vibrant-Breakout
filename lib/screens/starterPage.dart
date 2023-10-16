@@ -10,7 +10,6 @@ import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
 
-
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
 
@@ -69,7 +68,7 @@ class StarterPage extends StatelessWidget {
                       style: myfont(
                           textStyle: TextStyle(
                         color: buttonColor,
-                        fontSize: 22,
+                        fontSize: 12,
                       )),
                     ),
                   ),
