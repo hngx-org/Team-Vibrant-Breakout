@@ -4,14 +4,15 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
-import 'package:flame/game.dart';
+// import 'package:flame/game.dart';
+//TODO: Change shared preference to hive DB
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flame_audio/flame_audio.dart';
+// import 'package:flame_audio/flame_audio.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
-import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
+// import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 
 class Ball extends SpriteComponent
     with CollisionCallbacks, HasGameRef<BrickGameBaseClass> {
