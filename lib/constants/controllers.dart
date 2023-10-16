@@ -3,11 +3,50 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ScoreController extends GetxController {
   RxInt score = 0.obs;
+  RxDouble ballSpeed = 200.0.obs;
+  RxInt totalLife = 3.obs;
+  List allLevels = [];
+  int selectedLevelIndex = 0;
   final String _scoreKey = 'score'; // Key for SharedPreferences
+
+  void initAllLevels(List levels) {
+    allLevels = levels;
+  }
+
+  void updateSelectedLevels(int index) {
+    selectedLevelIndex = index;
+  }
 
   void updateScore(int newScore) {
     score.value = newScore;
     _saveScoreToSharedPreferences(newScore);
+  }
+
+  resetBallSpeed() {
+    ballSpeed = 200.0.obs;
+  }
+
+  void increaseScore(int newscore) {
+    int tempScore = score.value;
+    tempScore += newscore;
+    updateScore(tempScore);
+  }
+
+  void adjustBallSpeed(double newBallSpeed) {
+    ballSpeed.value += newBallSpeed;
+    ballSpeed.refresh();
+  }
+
+  bool checkLife() {
+    return totalLife.value >= 0;
+  }
+
+  void increaseLife() {
+    totalLife.value++;
+  }
+
+  void decreaseLife() {
+    totalLife.value--;
   }
 
   // Save the score to SharedPreferences

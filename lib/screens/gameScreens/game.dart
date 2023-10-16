@@ -24,6 +24,7 @@ class BrickGame extends BrickGameBaseClass
   late Player player;
   late TextComponent currentScore;
   List<List<Brick>> brickLayer = [];
+  
 
   late double yLocus;
   late double newDt;
@@ -32,6 +33,8 @@ class BrickGame extends BrickGameBaseClass
   bool emptyBricks = false;
   TapDownEvent? event;
   late Ball ball;
+
+  
 
   List<Brick> bricks1 = [];
 
