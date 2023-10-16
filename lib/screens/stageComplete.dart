@@ -71,19 +71,32 @@ class LevelComplete extends StatelessWidget {
                 child: GameScreenButton(
                   onTap: () {
                     scoreController.nextLevel();
-                    Get.off(
-                      () => GamePage(
-                        brickGame: scoreController
-                            .allLevels[scoreController.selectedLevelIndex],
-                      ),
-                    );
+                    if (scoreController.selectedLevelIndex >=
+                        scoreController.allLevels.length) {
+                      Get.snackbar(
+                        'Ongoing',
+                        'We are still in the process of making this. please hold up a moment',
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 30,
+                          horizontal: 20,
+                        ),
+                        backgroundColor: Colors.brown.withOpacity(.5),
+                      );
+                    } else {
+                      Get.off(
+                        () => GamePage(
+                          brickGame: scoreController
+                              .allLevels[scoreController.selectedLevelIndex],
+                        ),
+                      );
+                    }
                   },
                   label: 'Next Level',
                 ),
               ),
 
               const SizedBox(
-                height: 80,
+                height: 20,
               ),
               BounceInUp(
                 child: GameScreenButton(
