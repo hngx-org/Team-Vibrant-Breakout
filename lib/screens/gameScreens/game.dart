@@ -18,14 +18,13 @@ class BrickGame extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   BrickGame() : super();
 
-  
   @override
   int score = 0;
 
   late Player player;
   late TextComponent currentScore;
   List<List<Brick>> brickLayer = [];
-  
+
   late double yLocus;
   late double newDt;
   final boundaries = <Boundary>[];
@@ -114,6 +113,17 @@ class BrickGame extends BrickGameBaseClass
 
     // Show game over screen
     Get.off(() => GameOver());
+  }
+
+  void gameReset() {
+    // Reset score
+    score = 0;
+
+    // Reset ball position
+    ball.position = Vector2(size.x / 2, size.y / 2);
+
+    // Reset player position
+    player.position = Vector2(size.x / 2 - 50, size.y - 50);
   }
 
   @override
@@ -237,11 +247,11 @@ class BrickGame extends BrickGameBaseClass
     brickLayer.add(bricks4);
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
-    currentScore = TextComponent(
-      text: score.toString(),
-      position: Vector2(size[0] / 2 - 10, 10),
-    );
-    await add(currentScore);
+    // currentScore = TextComponent(
+    //   text: score.toString(),
+    //   position: Vector2(size[0] / 2 - 10, 10),
+    // );
+    // await add(currentScore);
 
     player = Player(
       playerSprite: await Sprite.load('player.png'),
