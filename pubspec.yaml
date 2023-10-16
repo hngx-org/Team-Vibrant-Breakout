@@ -44,6 +44,9 @@ flutter:
     - assets/images/diamond.png
     - assets/images/tile1.png
     - assets/images/tile2.png
+    - assets/images/100.png
+    - assets/images/fast.png
+    - assets/images/life.png
     - assets/images/tile3.png
     - assets/images/tile4.png
     - assets/audio/gameover.mp3

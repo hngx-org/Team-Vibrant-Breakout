@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
+import 'package:team_vibrant_breakout/constants/controllers.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/level2.dart';
@@ -14,6 +15,13 @@ class GameLevels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScoreController scoreController = Get.put(ScoreController());
+    scoreController.initAllLevels([
+      BrickGame(),
+      Level2(),
+      Level3(),
+      Level4(),
+    ]);
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -50,9 +58,10 @@ class GameLevels extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+              ),        
               const SizedBox(height: 30),
               Container(
+                alignment: Alignment.center,
                 constraints: const BoxConstraints(
                   maxWidth: 500,
                 ),
@@ -65,16 +74,24 @@ class GameLevels extends StatelessWidget {
                         onPressed: () {
                           switch (index) {
                             case 0:
-                              Get.to(() => GamePage(brickGame: BrickGame()));
+                              scoreController.updateSelectedLevels(index);
+                              Get.to(() => GamePage(
+                                  brickGame: scoreController.allLevels[index]));
                               break;
                             case 1:
-                              Get.to(() => GamePage(brickGame: Level2()));
+                              scoreController.updateSelectedLevels(index);
+                              Get.to(() => GamePage(
+                                  brickGame: scoreController.allLevels[index]));
                               break;
                             case 2:
-                              Get.to(() => GamePage(brickGame: Level3()));
+                              scoreController.updateSelectedLevels(index);
+                              Get.to(() => GamePage(
+                                  brickGame: scoreController.allLevels[index]));
                               break;
                             case 3:
-                              Get.to(() => GamePage(brickGame: Level4()));
+                              scoreController.updateSelectedLevels(index);
+                              Get.to(() => GamePage(
+                                  brickGame: scoreController.allLevels[index]));
                               break;
                             default:
                               Get.snackbar(
@@ -88,7 +105,7 @@ class GameLevels extends StatelessWidget {
                               );
                           }
                         },
-                        levelNumber: index,
+                        levelNumber: index + 1,
                       ),
                     ),
                   ),

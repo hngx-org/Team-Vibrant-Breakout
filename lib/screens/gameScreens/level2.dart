@@ -4,8 +4,6 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/src/services/keyboard_key.g.dart';
 import 'package:flutter/src/services/raw_keyboard.dart';
 import 'package:flutter/src/widgets/focus_manager.dart';
@@ -15,8 +13,7 @@ import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.da
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
-
-import '../stageComplete.dart';
+import 'package:team_vibrant_breakout/screens/stageComplete.dart';
 
 class Level2 extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
@@ -34,6 +31,7 @@ class Level2 extends BrickGameBaseClass
   final boundaries = <Boundary>[];
   bool tapping = false;
   bool emptyBricks = false;
+  int totalBricks = 0;
   TapDownEvent? event;
   late Ball ball;
 
@@ -119,6 +117,17 @@ class Level2 extends BrickGameBaseClass
     Get.off(() => GameOver());
   }
 
+  void gameReset() {
+    // Reset score
+    score = 0;
+
+    // Reset ball position
+    ball.position = Vector2(size.x / 2, size.y / 2);
+
+    // Reset player position
+    player.position = Vector2(size.x / 2 - 50, size.y - 50);
+  }
+
   @override
   KeyEventResult onKeyEvent(
       RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
@@ -174,6 +183,7 @@ class Level2 extends BrickGameBaseClass
     List<Brick> bricks7 = [];
 
     List.generate(size[0] ~/ (size.x / 5), (index) async {
+      totalBricks++;
       var random = Random().nextInt(4);
       bricks1.add(
         Brick(
@@ -185,6 +195,7 @@ class Level2 extends BrickGameBaseClass
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
       if (index % 2 == 0) {
+        totalBricks++;
         {
           bricks2.add(
             Brick(
@@ -198,6 +209,7 @@ class Level2 extends BrickGameBaseClass
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
       if (index % 2 == 0) {
+        totalBricks++;
         {
           bricks3.add(
             Brick(
@@ -209,6 +221,7 @@ class Level2 extends BrickGameBaseClass
       }
     });
     List.generate(size[0] ~/ (size.x / 5), (index) async {
+      totalBricks++;
       var random = Random().nextInt(4);
       bricks4.add(
         Brick(
@@ -218,6 +231,7 @@ class Level2 extends BrickGameBaseClass
       );
     });
     List.generate(size[0] ~/ (size.x / 5), (index) async {
+      totalBricks++;
       var random = Random().nextInt(4);
       bricks5.add(
         Brick(
@@ -227,7 +241,8 @@ class Level2 extends BrickGameBaseClass
       );
     });
     List.generate(size[0] ~/ (size.x / 5), (index) async {
-      var random = Random().nextInt(4);
+      totalBricks++;
+      var random = Random().nextInt(2);
       bricks6.add(
         Brick(
           brickSprite: await Sprite.load('tile${random + 1}.png'),
@@ -235,9 +250,11 @@ class Level2 extends BrickGameBaseClass
         ),
       );
     });
+
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
       if (index % 3 == 0) {
+        totalBricks++;
         {
           bricks7.add(
             Brick(
@@ -248,6 +265,7 @@ class Level2 extends BrickGameBaseClass
         }
       }
     });
+
     brickLayer.add(bricks1);
     brickLayer.add(bricks2);
     brickLayer.add(bricks3);
@@ -255,11 +273,12 @@ class Level2 extends BrickGameBaseClass
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
     brickLayer.add(bricks7);
-    currentScore = TextComponent(
-      text: score.toString(),
-      position: Vector2(size[0] / 2 - 10, 10),
-    );
-    await add(currentScore);
+
+    // currentScore = TextComponent(
+    //   text: score.toString(),
+    //   position: Vector2(size[0] / 2 - 10, 10),
+    // );
+    // await add(currentScore);
 
     player = Player(
       playerSprite: await Sprite.load('player.png'),
@@ -305,6 +324,9 @@ class Level2 extends BrickGameBaseClass
     //   ball.destroyedBricks = 0;
     // }
     // currentScore.text = score.toString();
+    if (totalBricks == ball.destroyedBricks) {
+      Get.off(() => const LevelComplete());
+    }
 
     super.update(dt);
   }
