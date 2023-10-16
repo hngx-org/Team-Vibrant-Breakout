@@ -13,6 +13,10 @@ class ScoreController extends GetxController {
     allLevels = levels;
   }
 
+  void nextLevel() {
+    selectedLevelIndex++;
+  }
+
   void updateSelectedLevels(int index) {
     selectedLevelIndex = index;
   }

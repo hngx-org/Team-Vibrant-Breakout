@@ -31,7 +31,7 @@ class Ball extends SpriteComponent
   Sprite ballSprite;
   double xSign = 1;
   late int destroyedBricks;
-  double ballSpeed= 0;
+  double ballSpeed = 0;
   ScoreController scoreController = Get.put(ScoreController());
 
   double ySign = 1;
@@ -116,7 +116,7 @@ class Ball extends SpriteComponent
         }
       }
     } else if (other is Brick) {
-      destroyedBricks > 10 ? destroyedBricks = 0 : destroyedBricks++;
+      destroyedBricks++;
       gameRef.score += 50; // Increase score by 50
       _prefs?.setInt('score', gameRef.score);
       // FlameAudio.play('audio/shot.wav');

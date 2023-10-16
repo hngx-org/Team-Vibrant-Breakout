@@ -27,7 +27,7 @@ class Brick extends SpriteComponent
   late PowerUp increaseLifePowerUp;
   late PowerUp increaseScorePowerUp;
   late PowerUp increaseSpeedPowerUp;
-  bool isDestroyed = false;
+  
 
   // Future<PowerUp?> selectPUp(int index) async {
   //   List<PowerUp> powerUps = [

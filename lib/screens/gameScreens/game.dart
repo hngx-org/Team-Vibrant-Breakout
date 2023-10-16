@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 import 'package:flutter/src/services/keyboard_key.g.dart';
 import 'package:flutter/src/services/raw_keyboard.dart';
 import 'package:flutter/src/widgets/focus_manager.dart';
+import 'package:team_vibrant_breakout/constants/controllers.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/ball.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
+import 'package:team_vibrant_breakout/screens/stageComplete.dart';
 
 class BrickGame extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
@@ -24,17 +26,15 @@ class BrickGame extends BrickGameBaseClass
   late Player player;
   late TextComponent currentScore;
   List<List<Brick>> brickLayer = [];
-  
 
   late double yLocus;
   late double newDt;
   final boundaries = <Boundary>[];
   bool tapping = false;
   bool emptyBricks = false;
+  int totalBricks = 0;
   TapDownEvent? event;
   late Ball ball;
-
-  
 
   List<Brick> bricks1 = [];
 
@@ -183,6 +183,7 @@ class BrickGame extends BrickGameBaseClass
     List<Brick> bricks6 = [];
 
     List.generate(size[0] ~/ (size.x / 5), (index) async {
+      totalBricks++;
       var random = Random().nextInt(4);
       bricks1.add(
         Brick(
@@ -194,6 +195,7 @@ class BrickGame extends BrickGameBaseClass
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
       if (index % 2 == 0) {
+        totalBricks++;
         {
           bricks2.add(
             Brick(
@@ -207,6 +209,7 @@ class BrickGame extends BrickGameBaseClass
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
       if (index % 2 == 0) {
+        totalBricks++;
         {
           bricks3.add(
             Brick(
@@ -218,6 +221,7 @@ class BrickGame extends BrickGameBaseClass
       }
     });
     List.generate(size[0] ~/ (size.x / 5), (index) async {
+      totalBricks++;
       var random = Random().nextInt(4);
       bricks4.add(
         Brick(
@@ -227,6 +231,7 @@ class BrickGame extends BrickGameBaseClass
       );
     });
     List.generate(size[0] ~/ (size.x / 5), (index) async {
+      totalBricks++;
       var random = Random().nextInt(4);
       bricks5.add(
         Brick(
@@ -236,7 +241,8 @@ class BrickGame extends BrickGameBaseClass
       );
     });
     List.generate(size[0] ~/ (size.x / 5), (index) async {
-      var random = Random().nextInt(4);
+      totalBricks++;
+      var random = Random().nextInt(2);
       bricks6.add(
         Brick(
           brickSprite: await Sprite.load('tile${random + 1}.png'),
@@ -244,12 +250,15 @@ class BrickGame extends BrickGameBaseClass
         ),
       );
     });
+
     brickLayer.add(bricks1);
     brickLayer.add(bricks2);
     brickLayer.add(bricks3);
     brickLayer.add(bricks4);
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
+    print(totalBricks);
+
     // currentScore = TextComponent(
     //   text: score.toString(),
     //   position: Vector2(size[0] / 2 - 10, 10),
@@ -300,6 +309,9 @@ class BrickGame extends BrickGameBaseClass
     //   ball.destroyedBricks = 0;
     // }
     // currentScore.text = score.toString();
+    if (totalBricks == ball.destroyedBricks) {
+      Get.off(() => const LevelComplete());
+    }
 
     super.update(dt);
   }
