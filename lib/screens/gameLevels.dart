@@ -74,17 +74,6 @@ class GameLevels extends StatelessWidget {
                         onPressed: () {
                           switch (index) {
                             case 0:
-
-                              Get.to(() => GamePage(brickGame: BrickGame()));
-                              break;
-                            case 1:
-                              Get.to(() => GamePage(brickGame: Level2()));
-                              break;
-                            case 2:
-                              Get.to(() => GamePage(brickGame: Level3()));
-                              break;
-                            case 3:
-                              Get.to(() => GamePage(brickGame: Level4()));
                               scoreController.updateSelectedLevels(index);
                               Get.to(() => GamePage(
                                   brickGame: scoreController.allLevels[index]));

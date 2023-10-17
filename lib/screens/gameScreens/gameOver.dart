@@ -67,20 +67,6 @@ class GameOver extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                ),
-              ),
-              //const Spacer()
-              const SizedBox(
-                height: 80,
-              ),
-              BounceInUp(
-                child: GameScreenButton(
-                  onTap: () {
-                    Get.off(() => GamePage(brickGame: BrickGame(),));
-                  },
-                  label: 'Play Again',
-                ),
                   //const Spacer()
                   const SizedBox(height: 80),
                   BounceInLeft(
@@ -108,7 +94,6 @@ class GameOver extends StatelessWidget {
                     ),
                   ),
                 ],
-
               ),
             ),
           ),

@@ -15,7 +15,6 @@ import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart
 import 'package:team_vibrant_breakout/screens/gameScreens/gameOver.dart';
 import 'package:team_vibrant_breakout/screens/stageComplete.dart';
 
-
 class Level2 extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   Level2() : super();
@@ -251,17 +250,11 @@ class Level2 extends BrickGameBaseClass
         ),
       );
     });
-// <<<<<<< feat/authScreens
-//     List.generate(size[0] ~/ (size.x / 5), (index) async {
-//       var random = Random().nextInt(4);
-//       if (index % 3 == 0) {
-// =======
 
-//     List.generate(size[0] ~/ (size.x / 5), (index) async {
-//       var random = Random().nextInt(4);
-//       if (index % 3 == 0) {
-//         totalBricks++;
-// >>>>>>> main
+    List.generate(size[0] ~/ (size.x / 5), (index) async {
+      var random = Random().nextInt(4);
+      if (index % 3 == 0) {
+        totalBricks++;
         {
           bricks7.add(
             Brick(
@@ -280,19 +273,12 @@ class Level2 extends BrickGameBaseClass
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
     brickLayer.add(bricks7);
-// <<<<<<< feat/authScreens
-//     currentScore = TextComponent(
-//       text: score.toString(),
-//       position: Vector2(size[0] / 2 - 10, 10),
-//     );
-//     await add(currentScore);
 
-//     // currentScore = TextComponent(
-//     //   text: score.toString(),
-//     //   position: Vector2(size[0] / 2 - 10, 10),
-//     // );
-//     // await add(currentScore);
-// >>>>>>> main
+    // currentScore = TextComponent(
+    //   text: score.toString(),
+    //   position: Vector2(size[0] / 2 - 10, 10),
+    // );
+    // await add(currentScore);
 
     player = Player(
       playerSprite: await Sprite.load('player.png'),
