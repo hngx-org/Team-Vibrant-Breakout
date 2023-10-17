@@ -8,18 +8,20 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
-import 'package:team_vibrant_breakout/screens/gameLevels.dart';
+import 'package:team_vibrant_breakout/constants/controllers.dart';
+
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/level2.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 class LevelComplete extends StatelessWidget {
-  LevelComplete({super.key});
+  const LevelComplete({super.key});
 
   static var myfont = GoogleFonts.pressStart2p;
 
   @override
   Widget build(BuildContext context) {
+    ScoreController scoreController = Get.put(ScoreController());
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -32,7 +34,7 @@ class LevelComplete extends StatelessWidget {
               Hero(
                 tag: titleAnimationTag,
                 child: Container(
-                  padding: EdgeInsets.all(7),
+                  padding: const EdgeInsets.all(7),
                   decoration: BoxDecoration(
                       border: Border(
                           top: BorderSide(
@@ -40,20 +42,20 @@ class LevelComplete extends StatelessWidget {
                               color: shadowColor,
                               style: BorderStyle.solid),
                           left: BorderSide(width: 16, color: shadowColor),
-                          bottom: BorderSide(
+                          bottom: const BorderSide(
                               width: 16,
                               color: Colors.black87,
                               style: BorderStyle.solid),
-                          right: BorderSide(
+                          right: const BorderSide(
                               width: 16,
                               color: Colors.black87,
                               style: BorderStyle.solid))),
                   child: BounceInDown(
-                    delay: Duration(milliseconds: 6),
+                    delay: const Duration(milliseconds: 6),
                     child: Text(
                       'C O N G R A T I O N S',
                       style: myfont(
-                          textStyle: TextStyle(
+                          textStyle: const TextStyle(
                         color: buttonColor,
                         fontSize: 20,
                       )),
@@ -68,21 +70,42 @@ class LevelComplete extends StatelessWidget {
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
+
                     Get.off(() => GamePage(brickGame: Level2(),));
+                    scoreController.nextLevel();
+                    if (scoreController.selectedLevelIndex >=
+                        scoreController.allLevels.length) {
+                      Get.snackbar(
+                        'Ongoing',
+                        'We are still in the process of making this. please hold up a moment',
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 30,
+                          horizontal: 20,
+                        ),
+                        backgroundColor: Colors.brown.withOpacity(.5),
+                      );
+                    } else {
+                      Get.off(
+                        () => GamePage(
+                          brickGame: scoreController
+                              .allLevels[scoreController.selectedLevelIndex],
+                        ),
+                      );
+                    
                   },
-                  label: 'Continue',
+                  label: 'Next Level',
                 ),
               ),
 
               const SizedBox(
-                height: 80,
+                height: 20,
               ),
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.off(() => StarterPage());
+                    Get.off(() => const StarterPage());
                   },
-                  label: 'Exit',
+                  label: 'Home',
                 ),
               ),
             ]),

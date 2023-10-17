@@ -26,39 +26,48 @@ class GameOver extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           decoration: const BoxDecoration(color: colorBlack),
-          child: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Hero(
-                tag: titleAnimationTag,
-                child: Container(
-                  padding: EdgeInsets.all(7),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(
-                              width: 16,
-                              color: shadowColor,
-                              style: BorderStyle.solid),
-                          left: BorderSide(width: 16, color: shadowColor),
-                          bottom: BorderSide(
-                              width: 16,
-                              color: Colors.black87,
-                              style: BorderStyle.solid),
-                          right: BorderSide(
-                              width: 16,
-                              color: Colors.black87,
-                              style: BorderStyle.solid))),
-                  child: BounceInDown(
-                    delay: Duration(milliseconds: 6),
-                    child: Text(
-                      'G A M E  O V E R',
-                      style: myfont(
-                          textStyle: TextStyle(
-                        color: buttonColor,
-                        fontSize: 20,
-                      )),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Hero(
+                    tag: titleAnimationTag,
+                    child: Container(
+                      padding: const EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              top: BorderSide(
+                                  width: 16,
+                                  color: shadowColor,
+                                  style: BorderStyle.solid),
+                              left: BorderSide(width: 16, color: shadowColor),
+                              bottom: const BorderSide(
+                                  width: 16,
+                                  color: Colors.black87,
+                                  style: BorderStyle.solid),
+                              right: const BorderSide(
+                                  width: 16,
+                                  color: Colors.black87,
+                                  style: BorderStyle.solid))),
+                      child: BounceInDown(
+                        delay: const Duration(milliseconds: 6),
+                        child: Text(
+                          'GAME OVER',
+                          textAlign: TextAlign.center,
+                          style: myfont(
+                            textStyle: const TextStyle(
+                              letterSpacing: 20,
+                              color: buttonColor,
+                              fontSize: 23,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
+
                 ),
               ),
               //const Spacer()
@@ -72,8 +81,36 @@ class GameOver extends StatelessWidget {
                   },
                   label: 'Play Again',
                 ),
+                  //const Spacer()
+                  const SizedBox(height: 80),
+                  BounceInLeft(
+                    child: GameScreenButton(
+                      onTap: () {
+                        Get.off(() => GamePage(
+                              brickGame: BrickGame(),
+                            ));
+                      },
+                      label: 'Play Again',
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  BounceInRight(
+                    child: GameScreenButton(
+                      onTap: () {
+                        Get.offUntil(
+                          MaterialPageRoute(
+                            builder: (context) => const StarterPage(),
+                          ),
+                          (route) => false,
+                        );
+                      },
+                      label: 'Home',
+                    ),
+                  ),
+                ],
+
               ),
-            ]),
+            ),
           ),
         ),
       ),

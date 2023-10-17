@@ -13,11 +13,13 @@ class GameToolBar extends StatefulWidget {
     required this.onSettingsTap,
     required this.onPause,
     required this.onResume,
+    required this.onRestart,
   });
 
   final VoidCallback onSettingsTap;
   final VoidCallback onPause;
   final VoidCallback onResume;
+  final VoidCallback onRestart;
 
   @override
   State<GameToolBar> createState() => _GameToolBarState();
@@ -74,6 +76,21 @@ class _GameToolBarState extends State<GameToolBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isPaused = true;
+                widget.onRestart();
+              });
+              Get.to(() => const RestartWidget());
+            },
+            icon: Icon(
+              Icons.restart_alt_sharp,
+              color: buttonColor,
+              size: 40,
+            ),
+          ),
+
           IconButton(
             onPressed: () {
               setState(() {

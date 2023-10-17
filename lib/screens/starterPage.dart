@@ -1,6 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flame/game.dart';
+
+// import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_instance/get_instance.dart';
 //import 'package:rive/rive.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +12,10 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/level4.dart';
+
 
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
@@ -63,11 +70,22 @@ class StarterPage extends StatelessWidget {
                               style: BorderStyle.solid))),
                   child: BounceInLeft(
                     delay: Duration(milliseconds: 6),
+
                     child: Text('Retro Breakout',
                         style: TextStyle(
                           color: buttonColor,
                           fontSize: 12,
                         )),
+
+                    child: Text(
+                      'Retro Breakout',
+                      style: myfont(
+                          textStyle: TextStyle(
+                        color: buttonColor,
+                        fontSize: 25,
+                      )),
+                    ),
+
                   ),
                 ),
               ),
@@ -105,7 +123,7 @@ class StarterPage extends StatelessWidget {
               //   },
               //   label: 'Settings',
               // ),
-              //const SizedBox(height: 10),
+              const SizedBox(height: 10),
               BounceInLeft(
                 child: GameScreenButton(
                   onTap: () {
@@ -283,6 +301,53 @@ class GameScreenButton extends StatelessWidget {
         style: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+}
+
+class RestartWidget extends StatelessWidget {
+  const RestartWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.4,
+        height: MediaQuery.of(context).size.width * 0.5,
+        constraints: const BoxConstraints(
+          maxHeight: 300,
+        ),
+        color: buttonColor,
+        child: Column(
+          children: [
+            const Spacer(),
+            Text('Are you sure you want to quit?'),
+            Text('you will lose your progress'),
+            const Spacer(),
+            ButtonBar(
+              children: [
+                MaterialButton(
+                  height: 50,
+                  onPressed: () {
+                    Get.offAll(() => GamePage(brickGame: BrickGame()));
+                  },
+                  child: const Text('Yes'),
+                ),
+                MaterialButton(
+                  color: Colors.black,
+                  height: 50,
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: const Text('No'),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );

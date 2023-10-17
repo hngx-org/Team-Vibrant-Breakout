@@ -4,14 +4,18 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
-import 'package:flame/game.dart';
+import 'package:get/get.dart';
+// import 'package:flame/game.dart';
+//TODO: Change shared preference to hive DB
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flame_audio/flame_audio.dart';
+import 'package:team_vibrant_breakout/constants/controllers.dart';
+// import 'package:flame_audio/flame_audio.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/player.dart';
-import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
+// import 'package:team_vibrant_breakout/screens/gameScreens/components/power_up.dart';
+// import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 
 class Ball extends SpriteComponent
     with CollisionCallbacks, HasGameRef<BrickGameBaseClass> {
@@ -27,6 +31,8 @@ class Ball extends SpriteComponent
   Sprite ballSprite;
   double xSign = 1;
   late int destroyedBricks;
+  double ballSpeed = 0;
+  ScoreController scoreController = Get.put(ScoreController());
 
   double ySign = 1;
   // @override
@@ -47,6 +53,7 @@ class Ball extends SpriteComponent
 
   @override
   FutureOr<void> onLoad() async {
+    ballSpeed = scoreController.ballSpeed.value;
     destroyedBricks = 0;
     _prefs = await SharedPreferences.getInstance();
     position = Vector2(game.size.x / 2, game.size.y / 2);
@@ -109,7 +116,7 @@ class Ball extends SpriteComponent
         }
       }
     } else if (other is Brick) {
-      destroyedBricks > 10 ? destroyedBricks = 0 : destroyedBricks++;
+      destroyedBricks++;
       gameRef.score += 50; // Increase score by 50
       _prefs?.setInt('score', gameRef.score);
       // FlameAudio.play('audio/shot.wav');
@@ -144,7 +151,7 @@ class Ball extends SpriteComponent
 
   @override
   void update(double dt) {
-    position += velocity * 200 * dt;
+    position += velocity * ballSpeed * dt;
     // x += 100 * cos(angle) * dt;
     // y += 100 * sin(angle) * dt;
     // int rand = Random(1).nextInt(90);
