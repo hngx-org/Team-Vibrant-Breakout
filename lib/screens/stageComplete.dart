@@ -1,8 +1,9 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:rive/rive.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -14,10 +15,30 @@ import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/level2.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
-class LevelComplete extends StatelessWidget {
-  const LevelComplete({super.key});
+import 'gameScreens/components/confetti.dart';
 
-  static var myfont = GoogleFonts.pressStart2p;
+class LevelComplete extends StatefulWidget {
+  LevelComplete({super.key});
+
+  @override
+  State<LevelComplete> createState() => _LevelCompleteState();
+}
+
+class _LevelCompleteState extends State<LevelComplete> {
+  final dynamic confettiController = ConfettiController();
+
+  @override
+  void initState() {
+    super.initState();
+    confettiController.play();
+  }
+
+  @override
+  void dispose() {
+    confettiController.dispose();
+    super.dispose();
+  }
+  // static var myfont = GoogleFonts.pressStart2p;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +52,8 @@ class LevelComplete extends StatelessWidget {
           child: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              MyConfetti(controller: confettiController),
+
               Hero(
                 tag: titleAnimationTag,
                 child: Container(
@@ -53,12 +76,12 @@ class LevelComplete extends StatelessWidget {
                   child: BounceInDown(
                     delay: const Duration(milliseconds: 6),
                     child: Text(
-                      'C O N G R A T I O N S',
-                      style: myfont(
-                          textStyle: const TextStyle(
-                        color: buttonColor,
-                        fontSize: 20,
-                      )),
+                      'CONGRATIONS',
+                      style: TextStyle(
+                          letterSpacing: 10,
+                          color: buttonColor,
+                          fontSize: 25,
+                          fontFamily: 'ARCADECLASSIC'),
                     ),
                   ),
                 ),
@@ -108,6 +131,66 @@ class LevelComplete extends StatelessWidget {
               ),
             ]),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class DialogueBox extends StatefulWidget {
+  const DialogueBox(
+      {Key? key,
+      required this.dialogIcon,
+      required this.dialogText,
+      required this.dialogButton})
+      : super(key: key);
+
+  final Widget dialogIcon, dialogText, dialogButton;
+
+  @override
+  State<DialogueBox> createState() => _DialogueBoxState();
+}
+
+class _DialogueBoxState extends State<DialogueBox> {
+  final dynamic confettiController = ConfettiController();
+
+  @override
+  void initState() {
+    super.initState();
+    confettiController.play();
+  }
+
+  @override
+  void dispose() {
+    confettiController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+      insetPadding: EdgeInsets.zero,
+      child: Container(
+        height: 428.h,
+        width: 380.w,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.r),
+            color: Color(0xFFFFDB58)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyConfetti(controller: confettiController),
+            widget.dialogIcon,
+            SizedBox(
+              height: 32.h,
+            ),
+            widget.dialogText,
+            SizedBox(
+              height: 64.h,
+            ),
+            widget.dialogButton
+          ],
         ),
       ),
     );
