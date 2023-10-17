@@ -325,7 +325,7 @@ class Level2 extends BrickGameBaseClass
     // }
     // currentScore.text = score.toString();
     if (totalBricks == ball.destroyedBricks) {
-      Get.off(() => const LevelComplete());
+      Get.off(() => LevelComplete());
     }
 
     super.update(dt);

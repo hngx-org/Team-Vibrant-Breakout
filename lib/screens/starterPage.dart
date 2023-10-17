@@ -4,7 +4,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_instance/get_instance.dart';
 //import 'package:rive/rive.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -18,7 +18,7 @@ import 'package:team_vibrant_breakout/screens/gameScreens/level4.dart';
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
 
-  static var myfont = GoogleFonts.pressStart2p;
+  // static var myfont = GoogleFonts.pressStart2p;
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +70,13 @@ class StarterPage extends StatelessWidget {
                     delay: Duration(milliseconds: 6),
                     child: Text(
                       'Retro Breakout',
-                      style: myfont(
-                          textStyle: TextStyle(
-                        color: buttonColor,
-                        fontSize: 25,
-                      )),
+                      style: TextStyle(
+                          letterSpacing: 5,
+                          color: buttonColor,
+                          fontSize: 22,
+                          // height: 10,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'ARCADECLASSIC'),
                     ),
                   ),
                 ),
@@ -291,6 +293,7 @@ class GameScreenButton extends StatelessWidget {
         style: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.w500,
+          fontFamily: 'DRAGON',
         ),
       ),
     );

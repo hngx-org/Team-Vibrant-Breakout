@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:rive/rive.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -16,7 +16,7 @@ import 'package:team_vibrant_breakout/screens/starterPage.dart';
 class GameOver extends StatelessWidget {
   GameOver({super.key});
 
-  static var myfont = GoogleFonts.pressStart2p;
+  // static var myfont = GoogleFonts.pressStart2p;
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +56,11 @@ class GameOver extends StatelessWidget {
                         child: Text(
                           'GAME OVER',
                           textAlign: TextAlign.center,
-                          style: myfont(
-                            textStyle: const TextStyle(
-                              letterSpacing: 20,
+                          style: TextStyle(
+                              letterSpacing: 12,
                               color: buttonColor,
-                              fontSize: 23,
-                            ),
-                          ),
+                              fontSize: 30,
+                              fontFamily: 'ARCADECLASSIC'),
                         ),
                       ),
                     ),
