@@ -70,6 +70,8 @@ class LevelComplete extends StatelessWidget {
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
+
+                    Get.off(() => GamePage(brickGame: Level2(),));
                     scoreController.nextLevel();
                     if (scoreController.selectedLevelIndex >=
                         scoreController.allLevels.length) {
@@ -89,7 +91,7 @@ class LevelComplete extends StatelessWidget {
                               .allLevels[scoreController.selectedLevelIndex],
                         ),
                       );
-                    }
+                    
                   },
                   label: 'Next Level',
                 ),

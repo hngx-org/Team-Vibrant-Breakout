@@ -251,12 +251,16 @@ class Level4 extends BrickGameBaseClass
           brickPosition: Vector2(index * (size.x / 5), yLocus + 150),
         ),
       );
-    });
+   
+    List.generate(size[0] ~/ (size.x / 5), (index) async {
+      var random = Random().nextInt(2);
+      if (index % 2 == 0)
 
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       var random = Random().nextInt(4);
       if (index % 3 == 0) {
         totalBricks++;
+
         {
           bricks7.add(
             Brick(
@@ -268,8 +272,12 @@ class Level4 extends BrickGameBaseClass
       }
     });
 
+        List.generate(size[0] ~/ (size.x / 5), (index) async {
+
+
     List.generate(size[0] ~/ (size.x / 5), (index) async {
       totalBricks++;
+
       var random = Random().nextInt(3);
       bricks8.add(
         Brick(
@@ -287,6 +295,13 @@ class Level4 extends BrickGameBaseClass
     brickLayer.add(bricks6);
     brickLayer.add(bricks7);
     brickLayer.add(bricks8);
+
+    currentScore = TextComponent(
+      text: score.toString(),
+      position: Vector2(size[0] / 2 - 10, 10),
+    );
+    await add(currentScore);
+
 
     // currentScore = TextComponent(
     //   text: score.toString(),

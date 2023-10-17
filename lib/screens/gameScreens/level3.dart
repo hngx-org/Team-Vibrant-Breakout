@@ -254,19 +254,30 @@ class Level3 extends BrickGameBaseClass
       );
     });
 
-    List.generate(size[0] ~/ (size.x / 5), (index) async {
-      var random = Random().nextInt(4);
+//     List.generate(size[0] ~/ (size.x / 5), (index) async {
+//       var random = Random().nextInt(4);
+//       bricks7.add(
+//         Brick(
+//           brickSprite: await Sprite.load('tile${random + 1}.png'),
+//           brickPosition: Vector2(index * (size.x / 5), yLocus + 180),
+//         ),
+//       );
+// =======
 
-      if (index % 2 == 0) {
-        totalBricks++;
+//     List.generate(size[0] ~/ (size.x / 5), (index) async {
+//       var random = Random().nextInt(4);
 
-        bricks7.add(
-          Brick(
-            brickSprite: await Sprite.load('tile${random + 1}.png'),
-            brickPosition: Vector2(index * (size.x / 5), yLocus + 180),
-          ),
-        );
-      }
+//       if (index % 2 == 0) {
+//         totalBricks++;
+
+//         bricks7.add(
+//           Brick(
+//             brickSprite: await Sprite.load('tile${random + 1}.png'),
+//             brickPosition: Vector2(index * (size.x / 5), yLocus + 180),
+//           ),
+//         );
+//       }
+
     });
     brickLayer.add(bricks1);
     brickLayer.add(bricks2);
@@ -275,12 +286,20 @@ class Level3 extends BrickGameBaseClass
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
     brickLayer.add(bricks7);
+// <<<<<<< feat/authScreens
+//     currentScore = TextComponent(
+//       text: score.toString(),
+//       position: Vector2(size[0] / 2 - 10, 10),
+//     );
+//     await add(currentScore);
+// =======
 
-    // currentScore = TextComponent(
-    //   text: score.toString(),
-    //   position: Vector2(size[0] / 2 - 10, 10),
-    // );
-    // await add(currentScore);
+//     // currentScore = TextComponent(
+//     //   text: score.toString(),
+//     //   position: Vector2(size[0] / 2 - 10, 10),
+//     // );
+//     // await add(currentScore);
+// >>>>>>> main
 
     player = Player(
       playerSprite: await Sprite.load('player.png'),
