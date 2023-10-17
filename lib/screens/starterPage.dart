@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 //import 'package:rive/rive.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -13,7 +13,7 @@ import 'package:team_vibrant_breakout/screens/gameLevels.dart';
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
 
-  static var myfont = GoogleFonts.pressStart2p;
+  //static var myfont = GoogleFonts.pressStart2p;
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +63,11 @@ class StarterPage extends StatelessWidget {
                               style: BorderStyle.solid))),
                   child: BounceInLeft(
                     delay: Duration(milliseconds: 6),
-                    child: Text(
-                      'Retro Breakout',
-                      style: myfont(
-                          textStyle: TextStyle(
-                        color: buttonColor,
-                        fontSize: 12,
-                      )),
-                    ),
+                    child: Text('Retro Breakout',
+                        style: TextStyle(
+                          color: buttonColor,
+                          fontSize: 12,
+                        )),
                   ),
                 ),
               ),
