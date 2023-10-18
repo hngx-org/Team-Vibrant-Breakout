@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "510672289382",
+    "project_id": "brick-breakout",
+    "storage_bucket": "brick-breakout.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510672289382:android:3bb8c92420eef66e63f7a7",
+        "android_client_info": {
+          "package_name": "com.example.team_vibrant_breakout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYsCTn7lBRULHYyMQe4X30d4-A3QE13Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
