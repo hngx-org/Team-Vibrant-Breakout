@@ -43,6 +43,7 @@ class _LevelCompleteState extends State<LevelComplete> {
   @override
   Widget build(BuildContext context) {
     ScoreController scoreController = Get.put(ScoreController());
+    scoreController.nextLevel();
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -93,7 +94,9 @@ class _LevelCompleteState extends State<LevelComplete> {
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
-                    scoreController.nextLevel();
+                    print(scoreController.selectedLevelIndex);
+                    print(scoreController.allLevels.length);
+
                     if (scoreController.selectedLevelIndex >=
                         scoreController.allLevels.length) {
                       Get.snackbar(
