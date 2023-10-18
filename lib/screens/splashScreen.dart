@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
@@ -17,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  static var myfont = GoogleFonts.pressStart2p;
+  // static var myfont = GoogleFonts.pressStart2p;
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +57,12 @@ class _SplashScreenState extends State<SplashScreen> {
                                 style: BorderStyle.solid))),
                     child: Text(
                       'BREAKOUT GAME',
-                      style: myfont(
-                          textStyle: TextStyle(
+                      style: TextStyle(
+                        letterSpacing: 5,
                         color: buttonColor,
-                        fontSize: 24,
-                      )),
+                        fontSize: 25,
+                        fontFamily: 'ARCADECLASSIC',
+                      ),
                     ),
                   ),
                 ),
