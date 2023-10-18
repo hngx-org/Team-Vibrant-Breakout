@@ -6,7 +6,12 @@ import 'package:path_provider/path_provider.dart' as path;
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
+
+import 'package:team_vibrant_breakout/screens/authScreens/signup.dart';
+import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
+import 'package:team_vibrant_breakout/screens/starterPage.dart'
 import 'package:team_vibrant_breakout/firebase_options.dart';
+
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
 
 void main() async {
@@ -42,7 +47,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home:const SplashScreen(),
+
+      home:const SplashScreen();
     );
   }
 }
