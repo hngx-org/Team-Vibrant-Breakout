@@ -10,7 +10,7 @@ class ScoreController extends GetxController {
   final String _scoreKey = 'score'; // Key for SharedPreferences
 
   void initAllLevels(List levels) {
-    allLevels = levels;
+    allLevels.addAll(levels);    
   }
 
   void nextLevel() {
