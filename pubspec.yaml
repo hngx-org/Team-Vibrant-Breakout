@@ -21,14 +21,20 @@ dependencies:
   path_provider: ^2.1.1
   shared_preferences: ^2.2.2
   flame_audio: ^2.1.2
+  hive_flutter: ^1.1.0
+  intl: ^0.18.1
+  confetti: ^0.7.0
+  firebase_core: ^2.18.0
+  firebase_auth: ^4.11.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-  google_fonts: ^6.1.0
+  # google_fonts: ^6.1.0
   hive_generator: ^2.0.1
+  build_runner: ^2.4.6
 
 flutter:
   uses-material-design: true
@@ -58,15 +64,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+  fonts:
+    - family: DRAGON
+      fonts:
+        - asset: fonts/DRAGON-HUNTER.ttf
+        # - asset: fonts/Schyler-Italic.ttf
+        #   style: italic
+    - family: ARCADECLASSIC
+      fonts:
+        - asset: fonts/joystix monospace.otf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
