@@ -13,10 +13,13 @@ import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
+import '../../constants/controllers.dart';
+
 class GameOver extends StatelessWidget {
   GameOver({super.key});
 
   // static var myfont = GoogleFonts.pressStart2p;
+  ScoreController scoreController = Get.put(ScoreController());
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +66,16 @@ class GameOver extends StatelessWidget {
                               fontFamily: 'ARCADECLASSIC'),
                         ),
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+
+                  Text(
+                    'Score: ${scoreController.score}',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'ARCADECLASSIC',
                     ),
                   ),
                   //const Spacer()
