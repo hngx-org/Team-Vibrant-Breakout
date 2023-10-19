@@ -29,7 +29,7 @@ class InfoFilelds extends StatelessWidget {
       },
       obscureText: obscureText,
       controller: controller,
-      style: TextStyle(color: textColor),
+      style: TextStyle(color: colorWhite),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 24),
         prefixIcon: icon,
