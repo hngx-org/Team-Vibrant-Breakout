@@ -9,7 +9,7 @@ import 'package:team_vibrant_breakout/appTheme/colors.dart';
 
 import 'package:team_vibrant_breakout/screens/authScreens/signup.dart';
 import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
-import 'package:team_vibrant_breakout/screens/starterPage.dart'
+import 'package:team_vibrant_breakout/screens/starterPage.dart';
 import 'package:team_vibrant_breakout/firebase_options.dart';
 
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
@@ -18,8 +18,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
   // initialize hive
-  final dir = await path.getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
+  // final dir = await path.getApplicationDocumentsDirectory();
+  // Hive.init(dir.path);
   await Hive.initFlutter('hive_db');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -28,7 +28,6 @@ void main() async {
   await Hive.openBox('userBox');
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -47,8 +46,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-
-      home:const SplashScreen();
+      home: const SplashScreen(),
     );
   }
 }
