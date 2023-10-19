@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
+import 'package:team_vibrant_breakout/authentication/authController.dart';
+//import 'package:team_vibrant_breakout/authentication/authController.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/authScreenWidgets.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
 
@@ -17,6 +19,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController2 = TextEditingController();
+
   TextEditingController nameController = TextEditingController();
   //UserController userController = Get.put(UserController());
   // final messageController = Get.put(MessageController());
@@ -115,7 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         InfoFilelds(
                           obscureText: !_obscurePassword,
                           hintText: "Enter your password",
-                          controller: passwordController,
+                          controller: passwordController2,
                           validator: (value) {
                             if (value != null && value.length >= 8) {
                               return null;
@@ -142,30 +146,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   const SizedBox(height: 30),
                   AuthScreenButtons(
-                    onTap: () async {
-                      // if (_formKey.currentState!.validate()) {
-                      //   final result = await loadToScreen(
-                      //     asyncComputation: () async =>
-                      //         await userController.signupUser(
-                      //       name: nameController.text,
-                      //       email: emailController.text,
-                      //       password: passwordController.text,
-                      //     ),
-                      //     context: context,
-                      //   );
-                      //   if (result == null) {
-                      //     await messageController.clearChatHistory();
-                      Get.to(() => const LoginScreen());
-                      //   } else {
-                      //     Get.snackbar(
-                      //       'Authentication Error',
-                      //       "Unable To Register User",
-                      //       colorText: Colors.red,
-                      //       margin: const EdgeInsets.all(10),
-                      //       duration: const Duration(seconds: 3),
-                      //     );
-                      //   }
-                      // }
+                    onTap: () {
+                      AuthController.instance.register(
+                          emailController.text.trim(),
+                          passwordController.text.trim());
+                      //Get.to(() => const LoginScreen());
                     },
                     text: 'Create Account',
                   ),
