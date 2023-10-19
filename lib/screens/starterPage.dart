@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 //import 'package:rive/rive.dart';
 // import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
+import 'package:team_vibrant_breakout/authentication/authController.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
+import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
@@ -106,7 +109,7 @@ class StarterPage extends StatelessWidget {
               //     label: 'Levels',
               //   ),
               // ),
-              const SizedBox(height: 10),
+
               // GameScreenButton(
               //   onTap: () {
               //     Get.dialog(
@@ -124,6 +127,16 @@ class StarterPage extends StatelessWidget {
                     );
                   },
                   label: 'Exit',
+                ),
+              ),
+              const SizedBox(height: 10),
+              BounceInLeft(
+                child: GameScreenButton(
+                  onTap: () {
+                    AuthController.instance.logOut();
+                    Get.toEnd(() => LoginScreen);
+                  },
+                  label: 'LOG OUT',
                 ),
               ),
               const Spacer(),
