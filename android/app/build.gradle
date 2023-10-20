@@ -59,6 +59,8 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         ndkVersion "25.1.8937393"
 
+        multiDexEnabled true
+
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -83,4 +85,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
+}

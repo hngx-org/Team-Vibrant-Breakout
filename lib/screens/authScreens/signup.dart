@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -5,10 +7,11 @@ import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/authentication/authController.dart';
 //import 'package:team_vibrant_breakout/authentication/authController.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/authScreenWidgets.dart';
+import 'package:team_vibrant_breakout/screens/authScreens/loadingWidget.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -16,14 +19,13 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool _obscurePassword = false;
+  bool _obscurePassword2 = false;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordController2 = TextEditingController();
-
   TextEditingController nameController = TextEditingController();
-  //UserController userController = Get.put(UserController());
-  // final messageController = Get.put(MessageController());
+
   var _formKey = GlobalKey<FormState>();
 
   @override
@@ -35,22 +37,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: bgColor,
-        body: SafeArea(
+      backgroundColor: Colors.transparent,
+      //Set the background color to be transparent
+      body: Container(
+        width: double.maxFinite,
+        height: double.maxFinite,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/image2.jpeg"),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
+                  //Use a BackdropFilter to blur the background
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                    child: Container(
+                      color: Colors.black
+                          .withOpacity(0.3), // Adjust the opacity as needed
+                    ),
+                  ),
+                  SizedBox(
                     height: 100,
                   ),
-                  // const ChatBuddyText(
-                  //   largeText: "Chat Buddy",
-                  //   smallText: "Create a New Account",
-                  // ),
-                  const SizedBox(
-                    height: 50,
+                  RetroText(
+                    largeText: "Retro Breakout",
+                    smallText: "Register an Account",
+                  ),
+                  SizedBox(
+                    height: 30,
                   ),
                   Form(
                     key: _formKey,
@@ -58,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         InfoFilelds(
                           hintText: 'Enter your Name',
-                          icon: const Icon(Icons.person),
+                          icon: Icon(Icons.person),
                           validator: (value) {
                             if (value != null && value.length > 3) {
                               return null;
@@ -70,12 +90,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           controller: nameController,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 30,
                         ),
                         InfoFilelds(
                           hintText: "Enter your Email Address",
-                          icon: const Icon(Icons.email),
+                          icon: Icon(Icons.email),
                           controller: emailController,
                           validator: (value) {
                             if (value != null && value.isEmail) {
@@ -85,35 +105,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           },
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 30,
                         ),
                         InfoFilelds(
-                          obscureText: !_obscurePassword,
+                          obscureText: !_obscurePassword2,
                           hintText: "Enter your password",
                           controller: passwordController,
                           validator: (value) {
-                            if (value != null && value.length >= 8) {
+                            if (value != null && value.length >= 6) {
                               return null;
                             } else if (value == null) {
                               return 'input valid password';
                             } else {
-                              return 'password should be at least 8 characters long';
+                              return 'password should be at least 6 characters long';
                             }
                           },
-                          icon: const Icon(Icons.lock),
+                          icon: Icon(Icons.lock),
                           trailing: IconButton(
                             onPressed: () {
                               setState(() {
-                                _obscurePassword = !_obscurePassword;
+                                _obscurePassword2 = !_obscurePassword2;
                               });
                             },
-                            icon: Icon(_obscurePassword
+                            icon: Icon(_obscurePassword2
                                 ? Icons.visibility
                                 : Icons.visibility_off),
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 30,
                         ),
                         InfoFilelds(
@@ -121,15 +141,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: "Enter your password",
                           controller: passwordController2,
                           validator: (value) {
-                            if (value != null && value.length >= 8) {
+                            if (value != null && value.length >= 6) {
                               return null;
                             } else if (value == null) {
                               return 'input valid password';
                             } else {
-                              return 'password should be at least 8 characters long';
+                              return 'password should be at least 6 characters long';
                             }
                           },
-                          icon: const Icon(Icons.lock),
+                          icon: Icon(Icons.lock),
                           trailing: IconButton(
                             onPressed: () {
                               setState(() {
@@ -144,17 +164,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30),
                   AuthScreenButtons(
-                    onTap: () {
-                      AuthController.instance.register(
-                          emailController.text.trim(),
-                          passwordController.text.trim());
-                      //Get.to(() => const LoginScreen());
-                    },
-                    text: 'Create Account',
-                  ),
-                  const SizedBox(
+                      text: 'Create Account',
+                      onTap: () async {
+                        if (_formKey.currentState!.validate()) {
+                          {
+                            final result = await loadToScreen(
+                              asyncComputation: () async =>
+                                  AuthController.instance.register(
+                                nameController.text.trim(),
+                                emailController.text.trim(),
+                                passwordController.text.trim(),
+                              ),
+                              context: context,
+                            );
+                            // if (result == null) {
+                            //   Get.to(() => const StarterPage());
+                            // } else {
+                            //   Get.snackbar(
+                            //     'Authentication Error',
+                            //     "User unable to login",
+                            //     colorText: Colors.red,
+                            //     margin: const EdgeInsets.all(10),
+                            //     duration: const Duration(seconds: 3),
+                            //   );
+                            // }
+                          }
+                        }
+                      }),
+                  SizedBox(
                     height: 60,
                   ),
                   InLineTexts(
@@ -168,6 +207,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
