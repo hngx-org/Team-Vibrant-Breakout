@@ -65,131 +65,132 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Stack(
+      body:
+          // isLoading
+          //     ? Center(
+          //         child: CircularProgressIndicator(),
+          //       )
+          //     :
+          Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/image2.jpeg'),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.8),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/image2.jpeg'),
-                      fit: BoxFit.fill,
-                    ),
+                Text(
+                  'Leaderboard',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'DRAGON',
                   ),
                 ),
-                Container(
-                  color: Colors.black.withOpacity(0.8),
-                ),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Leaderboard',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontFamily: 'DRAGON',
+                SizedBox(height: 20),
+                Flexible(
+                  child: DataTable(
+                    columns: [
+                      DataColumn(
+                        label: Text(
+                          'Rank',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'DRAGON',
+                          ),
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Flexible(
-                        child: DataTable(
-                          columns: [
-                            DataColumn(
-                              label: Text(
-                                'Rank',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontFamily: 'DRAGON',
-                                ),
-                              ),
-                            ),
-                            DataColumn(
-                              label: Text(
-                                'Username',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontFamily: 'DRAGON',
-                                ),
-                              ),
-                            ),
-                            DataColumn(
-                              label: Text(
-                                'HighScore',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontFamily: 'DRAGON',
-                                ),
-                              ),
-                            ),
-                          ],
-                          rows: userDataList
-                              .map(
-                                (userData) => DataRow(
-                                  cells: [
-                                    DataCell(
-                                      Text(
-                                        userData.rank.toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontFamily: 'DRAGON',
-                                        ),
-                                      ),
-                                    ),
-                                    DataCell(
-                                      Text(
-                                        userData.username,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontFamily: 'DRAGON',
-                                        ),
-                                      ),
-                                    ),
-                                    DataCell(
-                                      Text(
-                                        userData.highScore.toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontFamily: 'DRAGON',
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                              .toList(),
+                      DataColumn(
+                        label: Text(
+                          'Username',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'DRAGON',
+                          ),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: BounceInLeft(
-                          child: GameScreenButton(
-                            onTap: () {
-                              Get.back();
-                            },
-                            label: 'Go Back',
+                      DataColumn(
+                        label: Text(
+                          'HighScore',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'DRAGON',
                           ),
                         ),
                       ),
                     ],
+                    rows: userDataList
+                        .map(
+                          (userData) => DataRow(
+                            cells: [
+                              DataCell(
+                                Text(
+                                  userData.rank.toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'DRAGON',
+                                  ),
+                                ),
+                              ),
+                              DataCell(
+                                Text(
+                                  userData.username,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'DRAGON',
+                                  ),
+                                ),
+                              ),
+                              DataCell(
+                                Text(
+                                  userData.highScore.toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'DRAGON',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: BounceInLeft(
+                    child: GameScreenButton(
+                      onTap: () {
+                        Get.back();
+                      },
+                      label: 'Go Back',
+                    ),
                   ),
                 ),
               ],
             ),
+          ),
+        ],
+      ),
     );
   }
 }
