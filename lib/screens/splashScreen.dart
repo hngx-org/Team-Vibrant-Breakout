@@ -10,8 +10,11 @@ import 'package:team_vibrant_breakout/constants/animation_constant.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 class SplashScreen extends StatefulWidget {
-  String email;
-  SplashScreen({required this.email, super.key});
+  // String email;
+  SplashScreen(
+      {
+      //required this.email,
+      super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

@@ -2,25 +2,23 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart' as path;
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/authentication/authController.dart';
-import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
+import 'package:team_vibrant_breakout/screens/authScreens/actualSplashScreen.dart';
 
 import 'package:team_vibrant_breakout/screens/authScreens/signup.dart';
 import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
-//import 'package:team_vibrant_breakout/screens/starterPage.dart'
+import 'package:team_vibrant_breakout/screens/starterPage.dart';
 import 'package:team_vibrant_breakout/firebase_options.dart';
 
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   Flame.device.fullScreen();
   // initialize hive
   //final dir = await path.getApplicationDocumentsDirectory();
@@ -28,7 +26,6 @@ void main() async {
   await Hive.initFlutter('hive_db');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-    //dependency injection
   ).then((value) => Get.put(AuthController()));
 
   await Hive.openBox('userBox');
@@ -52,6 +49,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: const SignUpScreen());
+        home: Splash());
   }
 }

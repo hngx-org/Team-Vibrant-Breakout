@@ -1,6 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 
+class RetroText extends StatelessWidget {
+  final String largeText;
+  final String smallText;
+  const RetroText(
+      {required this.largeText, required this.smallText, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Column(children: [
+        Text(
+          largeText,
+          style: TextStyle(
+            //fontFamily: 'Scholarly Ambition',
+            color: buttonColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 40,
+          ),
+        ),
+        Text(
+          smallText,
+          style: TextStyle(
+            color: buttonColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
+        )
+      ]),
+    );
+  }
+}
+
 class InfoFilelds extends StatelessWidget {
   const InfoFilelds({
     required this.hintText,
@@ -116,7 +148,7 @@ class InLineTexts extends StatelessWidget {
             child: Text(
               secondText,
               style: TextStyle(
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                   color: buttonColor,
                   fontSize: 17),
             ))
