@@ -56,6 +56,7 @@ class InfoFilelds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         return validator(value);
       },
