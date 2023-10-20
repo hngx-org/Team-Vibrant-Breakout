@@ -5,6 +5,7 @@ import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/authentication/authController.dart';
 //import 'package:team_vibrant_breakout/authentication/authController.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/authScreenWidgets.dart';
+import 'package:team_vibrant_breakout/screens/authScreens/loadingWidget.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -97,16 +98,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 30,
                           ),
                           InfoFilelds(
-                            obscureText: !_obscurePassword,
+                            obscureText: !_obscurePassword2,
                             hintText: "Enter your password",
                             controller: passwordController,
                             validator: (value) {
-                              if (value != null && value.length >= 8) {
+                              if (value != null && value.length >= 6) {
                                 return null;
                               } else if (value == null) {
                                 return 'input valid password';
                               } else {
-                                return 'password should be at least 8 characters long';
+                                return 'password should be at least 6 characters long';
                               }
                             },
                             icon: const Icon(Icons.lock),
@@ -129,12 +130,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             hintText: "Enter your password",
                             controller: passwordController2,
                             validator: (value) {
-                              if (value != null && value.length >= 8) {
+                              if (value != null && value.length >= 6) {
                                 return null;
                               } else if (value == null) {
                                 return 'input valid password';
                               } else {
-                                return 'password should be at least 8 characters long';
+                                return 'password should be at least 6characters long';
                               }
                             },
                             icon: const Icon(Icons.lock),
@@ -154,15 +155,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 30),
                     AuthScreenButtons(
-                      onTap: () {
-                        AuthController.instance.register(
-                            nameController.text.trim(),
-                            emailController.text.trim(),
-                            passwordController.text.trim());
-                        //Get.to(() => const LoginScreen());
-                      },
-                      text: 'Create Account',
-                    ),
+                        text: 'Create Account',
+                        onTap: () async {
+                          if (_formKey.currentState!.validate()) {
+                            {
+                              final result = await loadToScreen(
+                                asyncComputation: () async =>
+                                    AuthController.instance.login(
+                                  emailController.text.trim(),
+                                  passwordController.text.trim(),
+                                ),
+                                context: context,
+                              );
+                              // if (result == null) {
+                              //   Get.to(() => const StarterPage());
+                              // } else {
+                              //   Get.snackbar(
+                              //     'Authentication Error',
+                              //     "User unable to login",
+                              //     colorText: Colors.red,
+                              //     margin: const EdgeInsets.all(10),
+                              //     duration: const Duration(seconds: 3),
+                              //   );
+                              // }
+                            }
+                          }
+                        }),
                     const SizedBox(
                       height: 60,
                     ),

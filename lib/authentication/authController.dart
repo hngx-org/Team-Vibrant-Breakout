@@ -46,7 +46,6 @@ class AuthController extends GetxController {
 //create account/register
   void register(String name, email, password) async {
     try {
-      const CircularProgressIndicator();
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       Get.to(() => const StarterPage());
@@ -64,7 +63,6 @@ class AuthController extends GetxController {
   //LOGIN
   void login(String email, password) async {
     try {
-      const CircularProgressIndicator(color: colorWhite);
       await auth.signInWithEmailAndPassword(email: email, password: password);
       Get.to(() => const StarterPage());
     } on FirebaseAuthException catch (e) {
