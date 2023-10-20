@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/leaderboard.dart';
 import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
 
 class GamePage extends StatefulWidget {
@@ -20,6 +21,7 @@ class _GamePageState extends State<GamePage> {
   @override
   void initState() {
     game = widget.brickGame;
+    // letsGetDocIds = getDocId();
     super.initState();
   }
 

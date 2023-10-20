@@ -16,6 +16,7 @@ import 'package:team_vibrant_breakout/screens/starterPage.dart';
 import 'package:team_vibrant_breakout/firebase_options.dart';
 
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
+import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

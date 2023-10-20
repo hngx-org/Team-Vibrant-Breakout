@@ -27,6 +27,7 @@ dependencies:
   flutter_spinkit: ^5.2.0
   firebase_core: ^2.18.0
   firebase_auth: ^4.11.0
+  cloud_firestore: ^4.11.0
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +48,7 @@ flutter:
     - assets/images/player.png
     - assets/images/ball.png
     - assets/images/goldcoin.png
+    - images/imagbg.jpeg
     - assets/images/wall.png
     - assets/images/diamond.png
     - assets/images/tile1.png

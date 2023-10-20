@@ -16,12 +16,14 @@ import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
 import 'package:team_vibrant_breakout/screens/gameLevels.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/game_page.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/how_to_play.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/leaderboard.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/level4.dart';
 
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
 
-  // static var myfont = GoogleFonts.pressStart2p;
+  // static var myfont = GoogleFonts.pressStart2p
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,6 @@ class StarterPage extends StatelessWidget {
                           letterSpacing: 5,
                           color: buttonColor,
                           fontSize: 22,
-                          // height: 10,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'ARCADECLASSIC'),
                     ),
@@ -96,19 +97,17 @@ class StarterPage extends StatelessWidget {
                   label: 'Play',
                 ),
               ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // BounceInLeft(
-              //   child: GameScreenButton(
-              //     onTap: () {
-              //       Get.dialog(
-              //         GameLevels(),
-              //       );
-              //     },
-              //     label: 'Levels',
-              //   ),
-              // ),
+              SizedBox(
+                height: 10,
+              ),
+              BounceInLeft(
+                child: GameScreenButton(
+                  onTap: () {
+                    Get.to(LeaderboardPage());
+                  },
+                  label: 'LeaderBoard',
+                ),
+              ),
 
               // GameScreenButton(
               //   onTap: () {
@@ -122,11 +121,9 @@ class StarterPage extends StatelessWidget {
               BounceInLeft(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.dialog(
-                      CustomDialogWidget(),
-                    );
+                    Get.to(InstructionsScreen());
                   },
-                  label: 'Exit',
+                  label: 'How to Play',
                 ),
               ),
               const SizedBox(height: 10),
