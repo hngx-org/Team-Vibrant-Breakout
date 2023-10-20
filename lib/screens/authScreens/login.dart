@@ -31,13 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //backgroundColor: bgColor,
-        body:
-            // Stack(children: [
-            //   ImageFiltered(
-            //     imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-            //     child:
-            Container(
+        body: Container(
       width: double.maxFinite,
       height: double.maxFinite,
       decoration: const BoxDecoration(
@@ -50,6 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                  child: Container(
+                      // color: Colors.black
+                      //     .withOpacity(0.7), // Adjust the opacity as needed
+                      ),
+                ),
                 const SizedBox(
                   height: 100,
                 ),

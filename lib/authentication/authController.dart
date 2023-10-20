@@ -7,7 +7,6 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
-import 'package:team_vibrant_breakout/screens/authScreens/actualSplashScreen.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/signup.dart';
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
@@ -50,13 +49,57 @@ class AuthController extends GetxController {
           email: email, password: password);
       Get.to(() => const StarterPage());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+      if (e.message == 'weak-password') {
+        // print('No user found for that email.');
+        Get.snackbar('Account Creation Failed', 'Registration Message',
+            snackPosition: SnackPosition.BOTTOM,
+            titleText: Text(
+              'Password is too weak',
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
+            ),
+            messageText: Text(
+              e.message!,
+              style: const TextStyle(
+                  color: Colors.red, fontWeight: FontWeight.w400),
+            ));
+      } else if (e.message == 'email-already-in-use') {
+        // print('Wrong password provided for that user.');
+        Get.snackbar('Account Creation Failed', 'Registration Message',
+            snackPosition: SnackPosition.BOTTOM,
+            titleText: Text(
+              'An account for that email already exists',
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
+            ),
+            messageText: Text(
+              e.message!,
+              style: const TextStyle(
+                  color: Colors.red, fontWeight: FontWeight.w400),
+            ));
+      } else {
+        Get.snackbar(
+          'Error',
+          'Loading error',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: colorWhite,
+          titleText: Text(
+            'Error',
+            style: TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
+          ),
+          messageText: Text(
+            e.message!,
+            style:
+                const TextStyle(color: Colors.red, fontWeight: FontWeight.w400),
+          ),
+        );
       }
-    } catch (e) {
-      print(e);
+
+      // if (e.code == 'weak-password') {
+      //   print('The password provided is too weak.');
+      // } else if (e.code == 'email-already-in-use') {
+      //   print('The account already exists for that email.');
+      // } else {
+      //   print(e);
+      // }
     }
   }
 

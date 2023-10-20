@@ -7,6 +7,7 @@ import 'package:animate_do/animate_do.dart';
 
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/constants/animation_constant.dart';
+import 'package:team_vibrant_breakout/screens/authScreens/login.dart';
 import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.delayed(Duration(seconds: 4), () => Get.to(StarterPage())),
+      future: Future.delayed(Duration(seconds: 4), () => Get.to(LoginScreen())),
       builder: (context, snapshot) {
         return Scaffold(
           body: Container(
