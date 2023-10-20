@@ -116,6 +116,7 @@ class Level4 extends BrickGameBaseClass
 
     // Show game over screen
     Get.off(() => GameOver());
+    super.gameOver();
   }
 
   void gameReset() {
@@ -339,6 +340,7 @@ class Level4 extends BrickGameBaseClass
     // }
     // currentScore.text = score.toString();
     if (totalBricks == ball.destroyedBricks) {
+      levelCompleteSound.resume();
       Get.off(() => LevelComplete());
     }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -104,7 +105,7 @@ class BrickGame extends BrickGameBaseClass
   // }
 
   @override
-  void gameOver() {
+  void gameOver() async {
     // Reset score
     score = 0;
 
@@ -116,6 +117,7 @@ class BrickGame extends BrickGameBaseClass
 
     // Show game over screen
     Get.off(() => GameOver());
+    super.gameOver();
   }
 
   void gameReset() {
@@ -257,7 +259,6 @@ class BrickGame extends BrickGameBaseClass
     brickLayer.add(bricks4);
     brickLayer.add(bricks5);
     brickLayer.add(bricks6);
-    print(totalBricks);
 
     // currentScore = TextComponent(
     //   text: score.toString(),
@@ -310,6 +311,7 @@ class BrickGame extends BrickGameBaseClass
     // }
     // currentScore.text = score.toString();
     if (totalBricks == ball.destroyedBricks) {
+      levelCompleteSound.resume();
       Get.off(() => LevelComplete());
     }
 
