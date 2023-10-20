@@ -8,7 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/authentication/authController.dart';
-import 'package:team_vibrant_breakout/screens/authScreens/actualSplashScreen.dart';
+//import 'package:team_vibrant_breakout/screens/authScreens/actualSplashScreen.dart';
 
 import 'package:team_vibrant_breakout/screens/authScreens/signup.dart';
 import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
