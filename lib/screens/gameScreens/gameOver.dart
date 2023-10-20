@@ -179,12 +179,17 @@ class GameOver extends StatelessWidget {
                                                 Navigator.pop(context);
                                                 submitScore();
                                               },
-                                              child: Text('Submit'),
+                                              child: Text(
+                                                'Submit',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
                                               color: Colors.black,
                                             ),
                                           ),
                                         ],
                                       ),
+                                      const SizedBox(height: 10),
                                     ],
                                   ),
                                 ),

@@ -27,12 +27,7 @@ dependencies:
   flutter_spinkit: ^5.2.0
   firebase_core: ^2.18.0
   firebase_auth: ^4.11.0
-<<<<<<< HEAD
-  cloud_firestore: ^4.10.0
-  flutter_spinkit: ^5.2.0
-=======
   cloud_firestore: ^4.11.0
->>>>>>> main
 
 dev_dependencies:
   flutter_test:

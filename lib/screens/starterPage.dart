@@ -103,13 +103,7 @@ class StarterPage extends StatelessWidget {
               BounceInLeft(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.showOverlay(
-                        asyncFunction: () => Future.delayed(
-                              Duration(seconds: 2),
-                              () => Get.to(LeaderboardPage()),
-                            ),
-                        loadingWidget:
-                            Center(child: CircularProgressIndicator()));
+                    Get.to(LeaderboardPage());
                   },
                   label: 'LeaderBoard',
                 ),

@@ -12,14 +12,10 @@ import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 class SplashScreen extends StatefulWidget {
   // String email;
-<<<<<<< HEAD
-  // SplashScreen({required this.email, super.key});
-=======
   SplashScreen(
       {
       //required this.email,
       super.key});
->>>>>>> main
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
