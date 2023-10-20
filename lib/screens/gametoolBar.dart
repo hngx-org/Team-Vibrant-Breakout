@@ -8,7 +8,7 @@ import 'package:team_vibrant_breakout/screens/starterPage.dart';
 import '../constants/controllers.dart';
 
 class GameToolBar extends StatefulWidget {
-  GameToolBar({
+  const GameToolBar({
     super.key,
     required this.onSettingsTap,
     required this.onPause,
@@ -72,7 +72,7 @@ class _GameToolBarState extends State<GameToolBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 188, 99, 204),
+      color: const Color.fromARGB(255, 188, 99, 204),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

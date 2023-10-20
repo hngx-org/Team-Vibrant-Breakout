@@ -3,9 +3,14 @@ import 'dart:math';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
+import 'package:flame/particles.dart';
+import 'package:flame/sprite.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/ball.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/components/particle.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/power_up.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/power_up_enum.dart';
 // import 'package:team_vibrant_breakout/screens/gameScreens/game.dart';
@@ -27,7 +32,7 @@ class Brick extends SpriteComponent
   late PowerUp increaseLifePowerUp;
   late PowerUp increaseScorePowerUp;
   late PowerUp increaseSpeedPowerUp;
-  
+
 
   // Future<PowerUp?> selectPUp(int index) async {
   //   List<PowerUp> powerUps = [
@@ -43,6 +48,7 @@ class Brick extends SpriteComponent
   @override
   FutureOr<void> onLoad() async {
     position = brickPosition;
+    //POWER UP INITIALIZATION
     increaseLifePowerUp = PowerUp(
       powerSprite: await Sprite.load('life.png'),
       ability: PowerUpEnum.increaseLife,
@@ -58,6 +64,9 @@ class Brick extends SpriteComponent
       ability: PowerUpEnum.increaseBallSpeed,
       powerPosition: position,
     );
+    //END POWER UP INITIALIZATION
+    //PARTICLE EFFECTS
+    //END PARTICLE EFFECT
     size = Vector2(game.size.x / 5, 30);
     await add(RectangleHitbox());
 
@@ -78,7 +87,7 @@ class Brick extends SpriteComponent
   void onCollision(
       Set<Vector2> intersectionPoints, PositionComponent other) async {
     if (other is Ball) {
-      scoreController.updateScore(scoreController.score.value + 50);
+      scoreController.updateScore(scoreController.score.value + 50);      
       var rand = Random().nextInt(8);
       if (rand >= 0 && rand < 2) {
         brickPowerUp = [
@@ -87,7 +96,6 @@ class Brick extends SpriteComponent
         ][rand];
         await game.add(brickPowerUp!);
       }
-      
       removeFromParent();
     }
     super.onCollision(intersectionPoints, other);

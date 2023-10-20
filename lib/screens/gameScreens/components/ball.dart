@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:get/get.dart';
+// import 'package:just_audio/just_audio.dart';
 // import 'package:flame/game.dart';
-//TODO: Change shared preference to hive DB
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:team_vibrant_breakout/constants/controllers.dart';
 // import 'package:flame_audio/flame_audio.dart';
@@ -28,31 +29,30 @@ class Ball extends SpriteComponent
           ],
         );
   Vector2 velocity = Vector2(0, 1);
+
   Sprite ballSprite;
+
   double xSign = 1;
-  late int destroyedBricks;
   double ballSpeed = 0;
+  double ySign = 1;
+
+  late int destroyedBricks;
+
   ScoreController scoreController = Get.put(ScoreController());
 
-  double ySign = 1;
-  // @override
-  // void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-  //   if (other is Brick) {
-  //     int rand = Random(1).nextInt(90);
-  //     angle += 2 * pi * rand;
-  //     velocity.y *= -1;
-  //   } else if (other is Player) {
-  //     int rand = Random(1).nextInt(90);
-  //     angle += 2 * pi * rand;
-  //     velocity.y *= -1;
-  //   }
-  //   super.onCollision(intersectionPoints, other);
-  // }
+  AudioPlayer playerSound = AudioPlayer();
+  AudioPlayer brickSound = AudioPlayer();
+  AudioPlayer wallSound = AudioPlayer();
 
   SharedPreferences? _prefs;
 
   @override
   FutureOr<void> onLoad() async {
+    
+    await playerSound.setSource(AssetSource('audio/player_hit.wav'));
+    // await wallSound.setAssetUrl('assets/audio/hit.wav');
+    await brickSound.setSource(AssetSource('audio/block_hit.wav'));
+
     ballSpeed = scoreController.ballSpeed.value;
     destroyedBricks = 0;
     _prefs = await SharedPreferences.getInstance();
@@ -66,7 +66,8 @@ class Ball extends SpriteComponent
   }
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  void onCollision(
+      Set<Vector2> intersectionPoints, PositionComponent other) async {
     Rect otherRect = Rect.fromPoints(
       Offset(other.x, other.y),
       Offset(other.x + other.width, other.y + other.height),
@@ -91,6 +92,7 @@ class Ball extends SpriteComponent
 
     if (other is Player) {
       // FlameAudio.play('audio/hit.wav');
+      playerSound.resume();
       if (otherRect.overlaps(thisRect)) {
         Rect intersection = thisRect.intersect(otherRect);
         if (intersection.height < intersection.width &&
@@ -115,11 +117,13 @@ class Ball extends SpriteComponent
           // velocity = Offset(0, velocity.y.abs()).toVector2();
         }
       }
+      // playerSound.stop();
     } else if (other is Brick) {
       destroyedBricks++;
       gameRef.score += 50; // Increase score by 50
       _prefs?.setInt('score', gameRef.score);
       // FlameAudio.play('audio/shot.wav');
+      brickSound.resume();
       if (otherRect.overlaps(thisRect)) {
         Rect intersection = thisRect.intersect(otherRect);
         if (intersection.height > intersection.width) {
