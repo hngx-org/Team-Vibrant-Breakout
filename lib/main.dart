@@ -17,6 +17,7 @@ import 'package:team_vibrant_breakout/screens/gametoolBar.dart';
 import 'package:team_vibrant_breakout/firebase_options.dart';
 
 import 'package:team_vibrant_breakout/screens/splashScreen.dart';
+import 'package:team_vibrant_breakout/screens/starterPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,6 +53,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: const SignUpScreen());
+        home: SplashScreen());
   }
 }
