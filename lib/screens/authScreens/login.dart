@@ -30,125 +30,127 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: bgColor,
-      body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("images/image2.jpeg"), fit: BoxFit.fill),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ImageFiltered(
-                    imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                  ),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  // const ChatBuddyText(
-                  //   largeText: "Chat Buddy",
-                  //   smallText: "Please Login To Your Account",
-                  // ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        InfoFilelds(
-                          hintText: 'Enter your email',
-                          icon: const Icon(Icons.email),
-                          validator: (value) {
-                            if (value != null && value.isEmail) {
-                              return null;
-                            } else {
-                              return 'input a valid email address';
-                            }
+        //backgroundColor: bgColor,
+        body:
+            // Stack(children: [
+            //   ImageFiltered(
+            //     imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+            //     child:
+            Container(
+      width: double.maxFinite,
+      height: double.maxFinite,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage("images/image2.jpeg"), fit: BoxFit.fill),
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0, right: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                const RetroText(
+                  largeText: "Retro Breakout",
+                  smallText: "Login To Your Account",
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      InfoFilelds(
+                        hintText: 'Enter your email',
+                        icon: const Icon(Icons.email),
+                        validator: (value) {
+                          if (value != null && value.isEmail) {
+                            return null;
+                          } else {
+                            return 'input a valid email address';
+                          }
+                        },
+                        controller: emailController,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      InfoFilelds(
+                        obscureText: !_passwordVisible,
+                        hintText: "Enter your password",
+                        controller: passwordController,
+                        validator: (value) {
+                          if (value != null && value.length >= 8) {
+                            return null;
+                          } else if (value == null) {
+                            return 'input valid password';
+                          } else {
+                            return 'password should be at least 8 characters long';
+                          }
+                        },
+                        icon: const Icon(Icons.lock),
+                        trailing: IconButton(
+                          icon: Icon(_passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
                           },
-                          controller: emailController,
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        InfoFilelds(
-                          obscureText: !_passwordVisible,
-                          hintText: "Enter your password",
-                          controller: passwordController,
-                          validator: (value) {
-                            if (value != null && value.length >= 8) {
-                              return null;
-                            } else if (value == null) {
-                              return 'input valid password';
-                            } else {
-                              return 'password should be at least 8 characters long';
-                            }
-                          },
-                          icon: const Icon(Icons.lock),
-                          trailing: IconButton(
-                            icon: Icon(_passwordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-
-                  const SizedBox(height: 50),
-                  AuthScreenButtons(
-                      text: 'Login',
-                      onTap: () async {
-                        // if (_formKey.currentState!.validate()) {
-                        //   {
-                        //     final result = await loadToScreen(
-                        //       asyncComputation: () async =>
-                        //           await userController.loginUser(
-                        //               email: emailController.text,
-                        //               password: passwordController.text),
-                        //       context: context,
-                        //     );
-                        //     if (result == null) {
-                        AuthController.instance.login(
-                          emailController.text.trim(),
-                          passwordController.text.trim(),
-                        );
-                        //Get.to(() => const StarterPage());
-                        // } else {
-                        //   Get.snackbar(
-                        //     'Authentication Error',
-                        //     "User unable to login",
-                        //     colorText: Colors.red,
-                        //     margin: const EdgeInsets.all(10),
-                        //     duration: const Duration(seconds: 3),
-                        //   );
-                      }),
-                  const SizedBox(
-                    height: 100,
+                ),
+                const SizedBox(height: 50),
+                AuthScreenButtons(
+                    text: 'Login',
+                    onTap: () async {
+                      // if (_formKey.currentState!.validate()) {
+                      //   {
+                      //     final result = await loadToScreen(
+                      //       asyncComputation: () async =>
+                      //           await userController.loginUser(
+                      //               email: emailController.text,
+                      //               password: passwordController.text),
+                      //       context: context,
+                      //     );
+                      //     if (result == null) {
+                      AuthController.instance.login(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                      );
+                      //Get.to(() => const StarterPage());
+                      // } else {
+                      //   Get.snackbar(
+                      //     'Authentication Error',
+                      //     "User unable to login",
+                      //     colorText: Colors.red,
+                      //     margin: const EdgeInsets.all(10),
+                      //     duration: const Duration(seconds: 3),
+                      //   );
+                    }),
+                const SizedBox(
+                  height: 100,
+                ),
+                InLineTexts(
+                  firstText: 'Dont have an account?',
+                  secondText: 'Sign Up',
+                  onpressed: () => Get.to(
+                    () => const SignUpScreen(),
                   ),
-                  InLineTexts(
-                    firstText: 'Dont have an account?',
-                    secondText: 'Sign Up',
-                    onpressed: () => Get.to(
-                      () => const SignUpScreen(),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
       ),
-    );
+    ));
+    //]),
+    // );
   }
 }
