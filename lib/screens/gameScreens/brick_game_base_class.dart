@@ -9,14 +9,14 @@ abstract class BrickGameBaseClass extends FlameGame {
 
   AudioPlayer gameOverSound = AudioPlayer();
   AudioPlayer levelCompleteSound = AudioPlayer();
-  AudioPlayer levelMusic = AudioPlayer();
+  // AudioPlayer levelMusic = AudioPlayer();
 
   @override
   FutureOr<void> onLoad() async {
     await gameOverSound.setSource(AssetSource('audio/gameover2.wav'));
     await levelCompleteSound.setSource(AssetSource('audio/level_complete.wav'));
-    await levelMusic.setSource(AssetSource('audio/level_music.wav'));
-    await levelMusic.resume();
+    // await levelMusic.setSource(AssetSource('audio/level_music.wav'));
+    // await levelMusic.resume();
     return super.onLoad();
   }
 
