@@ -82,9 +82,9 @@ class _GameToolBarState extends State<GameToolBar> {
                 isPaused = true;
                 widget.onRestart();
               });
-              Get.to(() => const RestartWidget());
+              Get.dialog(const RestartWidget());
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.restart_alt_sharp,
               color: buttonColor,
               size: 40,
@@ -99,7 +99,7 @@ class _GameToolBarState extends State<GameToolBar> {
               });
               Get.to(() => const SettingsDialog());
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.settings_applications,
               color: buttonColor,
               size: 40,

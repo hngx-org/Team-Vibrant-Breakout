@@ -160,7 +160,10 @@ class SettingsDialog extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.6,
         constraints: const BoxConstraints(maxHeight: 500, maxWidth: 500),
-        color: buttonColor,
+        decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Column(
           children: [
             const SizedBox(height: 20),
@@ -246,10 +249,13 @@ class CustomDialogWidget extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.4,
         height: MediaQuery.of(context).size.width * 0.5,
+        decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
         constraints: const BoxConstraints(
           maxHeight: 300,
-        ),
-        color: buttonColor,
+        ),        
         child: Column(
           children: [
             const Spacer(),
