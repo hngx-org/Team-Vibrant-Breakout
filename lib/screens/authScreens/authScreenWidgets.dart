@@ -18,6 +18,7 @@ class RetroText extends StatelessWidget {
             color: buttonColor,
             fontWeight: FontWeight.bold,
             fontSize: 40,
+            fontFamily: 'DRAGON',
           ),
         ),
         Text(

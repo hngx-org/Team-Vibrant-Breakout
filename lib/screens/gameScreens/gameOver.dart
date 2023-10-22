@@ -27,16 +27,19 @@ class GameOver extends StatelessWidget {
   final ScoreController scoreController = Get.put(ScoreController());
   // final UserController userController = Get.put(UserController());
   final nameController = TextEditingController();
+  final RxBool submitted = false.obs;
 
-  void _submitScore() {
+  void _submitScore() async {
     String displayName =
         AuthController.instance.getDisplayName() ?? 'Anonymous';
     int score = scoreController.score.value;
 
-    FirebaseFirestore.instance.collection('highScores').add({
-      'name': displayName,
-      'score': score,
-    }).then((value) {
+    try {
+      await FirebaseFirestore.instance.collection('highScores').add({
+        'name': displayName,
+        'score': score,
+      });
+      submitted.value = true;
       Get.snackbar(
         'Success',
         'Your score has been submitted successfully!',
@@ -46,7 +49,8 @@ class GameOver extends StatelessWidget {
       );
 
       print("Score added to Firestore!");
-    }).catchError((error) {
+    } catch (error) {
+      submitted.value = false;
       Get.snackbar(
         'Error',
         'An error occurred while submitting your score.',
@@ -55,7 +59,7 @@ class GameOver extends StatelessWidget {
         colorText: Colors.white,
       );
       print("Failed to add score: $error");
-    });
+    }
   }
 
   @override
@@ -63,7 +67,7 @@ class GameOver extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -95,7 +99,7 @@ class GameOver extends StatelessWidget {
                                     style: BorderStyle.solid))),
                         child: BounceInDown(
                           delay: const Duration(milliseconds: 6),
-                          child: Text(
+                          child: const Text(
                             'GAME OVER',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -111,7 +115,7 @@ class GameOver extends StatelessWidget {
 
                     Text(
                       'Score: ${scoreController.score}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         fontFamily: 'ARCADECLASSIC',
@@ -129,11 +133,16 @@ class GameOver extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     BounceInLeft(
-                      child: GameScreenButton(
-                        onTap: () {
-                          _submitScore();
-                        },
-                        label: 'Submit Score',
+                      child: Obx(
+                        () => submitted.value
+                            ? const SizedBox
+                                .shrink() // Submit button disappears
+                            : GameScreenButton(
+                                onTap: () {
+                                  _submitScore();
+                                },
+                                label: 'Submit Score',
+                              ),
                       ),
                     ),
 
