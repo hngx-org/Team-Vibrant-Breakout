@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
 import 'package:team_vibrant_breakout/authentication/authController.dart';
 import 'package:team_vibrant_breakout/screens/authScreens/authScreenWidgets.dart';
@@ -122,6 +123,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             context: context,
                           );
+
+                          // After successful login, update Hive
+                          Box userBox = await Hive.openBox('userBox');
+                          userBox.put('isLoggedIn', true);
+                          Get.offAll(() => StarterPage());
                           // if (result == null) {
                           //   Get.to(() => const StarterPage());
                           // } else {

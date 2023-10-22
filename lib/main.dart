@@ -24,12 +24,12 @@ void main() async {
   // initialize hive
   //final dir = await path.getApplicationDocumentsDirectory();
   //Hive.init(dir.path);
-  await Hive.initFlutter('hive_db');
+  await Hive.initFlutter();
+  await Hive.openBox('userBox');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((value) => Get.put(AuthController()));
 
-  await Hive.openBox('userBox');
   runApp(const MyApp());
 }
 

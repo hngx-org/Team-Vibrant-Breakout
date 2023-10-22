@@ -127,7 +127,7 @@ class _LevelCompleteState extends State<LevelComplete> {
               BounceInUp(
                 child: GameScreenButton(
                   onTap: () {
-                    Get.off(() => const StarterPage());
+                    Get.off(() => StarterPage());
                   },
                   label: 'Home',
                 ),
