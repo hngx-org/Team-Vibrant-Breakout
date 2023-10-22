@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                 ),
                 const SizedBox(
-                  height: 100,
+                  height: 200,
                 ),
                 const RetroText(
                   largeText: "Retro Breakout",

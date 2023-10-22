@@ -39,8 +39,7 @@ class StarterPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 10),
-
+              Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -51,8 +50,9 @@ class StarterPage extends StatelessWidget {
                     BounceInDown(
                       delay: Duration(milliseconds: 50),
                       child: Text(
-                        'Welcome, $displayName', // Display the user's name here
+                        'Welcome, $displayName!', // Display the user's name here
                         style: TextStyle(
+                            letterSpacing: 2,
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
                             fontFamily: "DRAGON",
@@ -61,7 +61,7 @@ class StarterPage extends StatelessWidget {
                     ),
                 ],
               ),
-              const Spacer(),
+              SizedBox(height: 30),
               Hero(
                 tag: titleAnimationTag,
                 child: Container(
@@ -86,7 +86,7 @@ class StarterPage extends StatelessWidget {
                     child: Text(
                       'Retro Breakout',
                       style: TextStyle(
-                          letterSpacing: 5,
+                          letterSpacing: 7,
                           color: buttonColor,
                           fontSize: 22,
                           fontWeight: FontWeight.w700,
