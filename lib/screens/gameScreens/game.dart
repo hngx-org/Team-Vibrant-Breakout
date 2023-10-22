@@ -10,6 +10,7 @@ import 'package:flutter/src/services/raw_keyboard.dart';
 import 'package:flutter/src/widgets/focus_manager.dart';
 import 'package:team_vibrant_breakout/constants/controllers.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/brick_game_base_class.dart';
+import 'package:team_vibrant_breakout/screens/gameScreens/components/background.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/ball.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/boundary.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/components/brick.dart';
@@ -21,6 +22,7 @@ class BrickGame extends BrickGameBaseClass
     with TapCallbacks, KeyboardEvents, HasCollisionDetection, DragCallbacks {
   BrickGame() : super();
 
+  final Background _gamebackground = Background();
   @override
   int score = 0;
 
@@ -146,6 +148,7 @@ class BrickGame extends BrickGameBaseClass
 
   @override
   FutureOr<void> onLoad() async {
+    await add(_gamebackground);
     ball = Ball(
       ballSprite: await Sprite.load('ball.png'),
     );
@@ -312,6 +315,7 @@ class BrickGame extends BrickGameBaseClass
     // currentScore.text = score.toString();
     if (totalBricks == ball.destroyedBricks) {
       levelCompleteSound.resume();
+      levelMusic.pause();
       Get.off(() => LevelComplete());
     }
 
