@@ -30,6 +30,7 @@ dependencies:
   cloud_firestore: ^4.11.0
   audioplayers: ^5.2.0
   just_audio: ^0.9.35
+  hive: ^2.2.3
 
 dev_dependencies:
   flutter_test:

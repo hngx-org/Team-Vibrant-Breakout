@@ -21,9 +21,10 @@ import 'package:team_vibrant_breakout/screens/gameScreens/leaderboard.dart';
 import 'package:team_vibrant_breakout/screens/gameScreens/level4.dart';
 
 class StarterPage extends StatelessWidget {
-  const StarterPage({super.key});
+  StarterPage({super.key});
 
   // static var myfont = GoogleFonts.pressStart2p
+  String? displayName = AuthController.instance.getDisplayName();
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +40,25 @@ class StarterPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 10),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  // Text(
-                  //   'HighScore: 0000',
-                  //   style: TextStyle(
-                  //       fontWeight: FontWeight.bold,
-                  //       fontSize: 25,
-                  //       color: buttonColor),
-                  // ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.0, top: 70, right: 10.0),
+                  ),
+                  if (displayName != null)
+                    BounceInDown(
+                      delay: Duration(milliseconds: 50),
+                      child: Text(
+                        'Welcome, $displayName', // Display the user's name here
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                            fontFamily: "DRAGON",
+                            color: buttonColor),
+                      ),
+                    ),
                 ],
               ),
               const Spacer(),
@@ -252,7 +262,7 @@ class CustomDialogWidget extends StatelessWidget {
         ),
         constraints: const BoxConstraints(
           maxHeight: 300,
-        ),        
+        ),
         child: Column(
           children: [
             const Spacer(),
@@ -307,7 +317,7 @@ class GameScreenButton extends StatelessWidget {
       child: Text(
         label,
         style: const TextStyle(
-          fontSize: 24,
+          fontSize: 18,
           fontWeight: FontWeight.w500,
           fontFamily: 'DRAGON',
         ),

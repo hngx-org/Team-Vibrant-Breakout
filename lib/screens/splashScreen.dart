@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 import 'package:team_vibrant_breakout/appTheme/colors.dart';
@@ -27,7 +28,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.delayed(Duration(seconds: 4), () => Get.to(LoginScreen())),
+      future: Future.delayed(Duration(seconds: 4), () async {
+        Box userBox = await Hive.openBox('userBox');
+        bool isLoggedIn = userBox.get('isLoggedIn', defaultValue: false);
+
+        if (isLoggedIn) {
+          Get.offAll(() => StarterPage());
+        } else {
+          Get.offAll(() => LoginScreen());
+        }
+      }),
       builder: (context, snapshot) {
         return Scaffold(
           body: Container(

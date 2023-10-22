@@ -48,7 +48,6 @@ class Ball extends SpriteComponent
 
   @override
   FutureOr<void> onLoad() async {
-    
     await playerSound.setSource(AssetSource('audio/player_hit.wav'));
     // await wallSound.setAssetUrl('assets/audio/hit.wav');
     await brickSound.setSource(AssetSource('audio/block_hit.wav'));

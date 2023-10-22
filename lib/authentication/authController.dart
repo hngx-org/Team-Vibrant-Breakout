@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -27,27 +29,41 @@ class AuthController extends GetxController {
     _user = Rx<User?>(auth.currentUser);
 //notifies user upon any changes
     _user.bindStream(auth.userChanges());
-    ever(_user, _initialScreen);
+    // ever(_user, _initialScreen);
   }
 
-  _initialScreen(User? user) {
-    if (user == null) {
-      print('loginpage');
-      Get.offAll(() => const LoginScreen());
+  // _initialScreen(User? user) {
+  //   if (user != null) {
+  //     print('User is logged in');
+  //     Get.offAll(StarterPage());
+  //   }
+  //   // No need to handle the case where user is null (not logged in) here.
+  //   // This will allow the screen state to update without redirection.
+  // }
+  void handleAuthentication() {
+    if (AuthController.instance.auth.currentUser != null) {
+      // User is logged in, navigate to StarterPage
+      Get.offAll(() => StarterPage());
     } else {
-      //take note
-      Get.offAll(const StarterPage(
-          // email: user.email!
-          ));
+      // User is not logged in, navigate to LoginScreen
+      Get.offAll(() => LoginScreen());
     }
+  }
+
+  String? getDisplayName() {
+    return _user.value?.displayName;
   }
 
 //create account/register
   void register(String name, email, password) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      Get.to(() => const StarterPage());
+      // ignore: deprecated_member_use
+      await userCredential.user!.updateProfile(displayName: name);
+      // await auth.createUserWithEmailAndPassword(
+      //     email: email, password: password);
+      Get.to(() => StarterPage());
     } on FirebaseAuthException catch (e) {
       if (e.message == 'weak-password') {
         // print('No user found for that email.');
@@ -107,7 +123,7 @@ class AuthController extends GetxController {
   void login(String email, password) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.to(() => const StarterPage());
+      Get.to(() => StarterPage());
     } on FirebaseAuthException catch (e) {
       if (e.message == 'user-not-found') {
         // print('No user found for that email.');
@@ -158,4 +174,23 @@ class AuthController extends GetxController {
   void logOut() async {
     await auth.signOut();
   }
+
+//   Future<void> saveScore(String playerName, int score) async {
+//   var user = FirebaseAuth.instance.currentUser;
+
+//   if (user != null) {
+//     try {
+//       await FirebaseFirestore.instance
+//           .collection('user_scores')
+//           .doc(user.uid)
+//           .set({
+//         'name': playerName,
+//         'score': score,
+//       });
+//       print('Score saved successfully!');
+//     } catch (e) {
+//       print('Error saving score: $e');
+//     }
+//   }
+// }
 }
