@@ -141,7 +141,7 @@ class StarterPage extends StatelessWidget {
                 child: GameScreenButton(
                   onTap: () {
                     AuthController.instance.logOut();
-                    Get.toEnd(() => LoginScreen);
+                    Get.offAll(() => LoginScreen());
                   },
                   label: 'LOG OUT',
                 ),
