@@ -81,7 +81,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
           : Stack(
               children: [
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('images/image2.jpeg'),
                       fit: BoxFit.fill,
@@ -95,7 +95,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Leaderboard',
                         style: TextStyle(
                           fontSize: 24,
@@ -104,11 +104,11 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                           fontFamily: 'DRAGON',
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Flexible(
                         child: DataTable(
                           columns: [
-                            DataColumn(
+                            const DataColumn(
                               label: Text(
                                 'Rank',
                                 style: TextStyle(
@@ -119,7 +119,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                 ),
                               ),
                             ),
-                            DataColumn(
+                            const DataColumn(
                               label: Text(
                                 'Username',
                                 style: TextStyle(
@@ -130,7 +130,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                 ),
                               ),
                             ),
-                            DataColumn(
+                            const DataColumn(
                               label: Text(
                                 'HighScore',
                                 style: TextStyle(
@@ -149,7 +149,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     DataCell(
                                       Text(
                                         userData.rank.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
                                           fontFamily: 'DRAGON',
@@ -159,7 +159,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     DataCell(
                                       Text(
                                         userData.username,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
                                           fontFamily: 'DRAGON',
@@ -169,7 +169,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                     DataCell(
                                       Text(
                                         userData.highScore.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
                                           fontFamily: 'DRAGON',
@@ -183,8 +183,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
                         child: BounceInLeft(
                           child: GameScreenButton(
                             onTap: () {

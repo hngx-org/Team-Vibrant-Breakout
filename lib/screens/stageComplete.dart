@@ -62,16 +62,17 @@ class _LevelCompleteState extends State<LevelComplete> {
                   decoration: BoxDecoration(
                       border: Border(
                           top: BorderSide(
-                              width: 16,
+                              width: 17,
                               color: shadowColor,
                               style: BorderStyle.solid),
                           left: BorderSide(width: 16, color: shadowColor),
                           bottom: const BorderSide(
-                              width: 16,
+                              //formerly 16
+                              width: 17,
                               color: Colors.black87,
                               style: BorderStyle.solid),
                           right: const BorderSide(
-                              width: 16,
+                              width: 17,
                               color: Colors.black87,
                               style: BorderStyle.solid))),
                   child: BounceInDown(

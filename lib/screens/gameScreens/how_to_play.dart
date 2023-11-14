@@ -7,7 +7,7 @@ class InstructionsScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Retro Breakout',
           style: TextStyle(
             fontFamily: 'DRAGON',
@@ -28,10 +28,10 @@ class InstructionsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           color: Colors.black,
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Center(
+              const Center(
                 child: Text(
                   'How to Play',
                   style: TextStyle(
@@ -42,7 +42,7 @@ class InstructionsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0), // Add spacing after heading
+              const SizedBox(height: 20.0), // Add spacing after heading
               _buildInstructionStep(
                 'Launch the Game',
                 'Open the breakout game application',
@@ -103,7 +103,7 @@ class InstructionsScreen extends StatelessWidget {
                 'Have Fun!',
                 'Enjoy the game for relaxation and skill-building.',
               ),
-              SizedBox(height: 20.0), // Add some spacing at the end
+              const SizedBox(height: 20.0), // Add some spacing at the end
             ],
           ),
         ),
@@ -116,10 +116,10 @@ class InstructionsScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          leading: Icon(Icons.circle, size: 10, color: Colors.white),
+          leading: const Icon(Icons.circle, size: 10, color: Colors.white),
           title: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'ARCADECLASSIC',
@@ -128,17 +128,17 @@ class InstructionsScreen extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 16.0),
+          padding: const EdgeInsets.only(left: 16.0),
           child: Text(
             description,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16.0,
               color: Colors.white,
               fontFamily: 'ARCADECLASSIC',
             ),
           ),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
       ],
     );
   }
